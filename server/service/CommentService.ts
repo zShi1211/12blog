@@ -34,7 +34,8 @@ export default class CommentService {
             where: {
                 articleId
             },
-            include: SubComment
+            include: SubComment,
+            group: "Comment.nickname"
         })
         res.rows = res.rows.map(data => data.toJSON())
         return res;

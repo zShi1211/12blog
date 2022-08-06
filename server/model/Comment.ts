@@ -10,7 +10,7 @@ export default class Comment extends Model<InferAttributes<Comment>, InferCreati
     articleId: number;
     nickname: string;
     content: string;
-    time: string;
+    time: number;
     avatar: string;
 }
 
@@ -30,7 +30,14 @@ Comment.init({
     },
     time: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        get() {
+            const rawValue = this.getDataValue('time');
+            return new Date(rawValue).valueOf();
+        },
+        set(value: number) {
+            this.setDataValue('time', new Date(value).valueOf());
+        }
     },
     avatar: {
         type: DataTypes.STRING,
@@ -38,7 +45,7 @@ Comment.init({
     },
     // foreignKey
     articleId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     }
 }, { tableName: 'comment', sequelize });

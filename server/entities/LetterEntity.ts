@@ -16,10 +16,9 @@ export default class LetterEntity extends BaseEntity implements LetterType {
 
     @IsNotEmpty()
     @Type(() => String)
-    time: string;
+    time: number;
 
     @IsNotEmpty()
-    @IsUrl()
     @Type(() => String)
     avatar: string;
 

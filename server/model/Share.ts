@@ -7,7 +7,7 @@ export default class Share extends Model<InferAttributes<Share>, InferCreationAt
 
     pictureUrl: string;
     description: string;
-    time: string;
+    time: number;
 }
 
 Share.init({
@@ -26,7 +26,14 @@ Share.init({
     },
     time: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        get() {
+            const rawValue = this.getDataValue('time');
+            return new Date(rawValue).valueOf();
+          },
+          set(value: number) {
+              this.setDataValue('time', new Date(value).valueOf());
+          }
     },
 }, { tableName: 'share', sequelize });
 

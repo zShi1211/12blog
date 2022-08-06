@@ -27,7 +27,6 @@ export default class AdminEntity extends BaseEntity implements AdminType {
 
 
     @IsNotEmpty()
-    @IsUrl()
     @Type(() => String)
     avatar: string;
 

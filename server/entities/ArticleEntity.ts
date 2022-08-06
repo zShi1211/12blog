@@ -5,7 +5,7 @@ import { Type } from 'class-transformer'
 import { ArticleType } from '../model/types';
 import BaseEntity from './baseEntity';
 
-export default class ArticleEntity extends BaseEntity  implements ArticleType {
+export default class ArticleEntity extends BaseEntity implements ArticleType {
 
     @IsNotEmpty()
     @Type(() => String)
@@ -18,19 +18,14 @@ export default class ArticleEntity extends BaseEntity  implements ArticleType {
 
 
     @IsNotEmpty()
-    @IsDate()
     @Type(() => Date)
-    time: string;
+    time: number;
 
 
-    @IsNotEmpty()
-    @IsNumber()
     @Type(() => Number)
     like: number;
 
 
-    @IsNotEmpty()
-    @IsNumber()
     @Type(() => Number)
     declare words: string;
 
@@ -41,6 +36,10 @@ export default class ArticleEntity extends BaseEntity  implements ArticleType {
 
     @Type(() => Boolean)
     declare ispublish: boolean;
+
+    @IsNotEmpty()
+    @Type(() => String)
+    mdString: string;
 
     static transform(obj: any) {
         return super.plainToClass(this, obj);

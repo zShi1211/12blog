@@ -1,3 +1,2 @@
-// import "./mocks/article";
-import './model/relation'
+import './model'
 import "./router"

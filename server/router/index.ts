@@ -10,6 +10,8 @@ import subCommentRoute from './SubCommentRoute'
 import Upload from './Upload'
 import koaStaticCache from 'koa-static-cache'
 import path from 'path';
+import koaStatic from "koa-static";
+
 
 const app = new Koa();
 
@@ -29,7 +31,7 @@ app.use(async (ctx, next) => {
 })
 
 // 静态资源托管
-app.use(koaStaticCache(path.resolve(__dirname,"../public")));
+app.use(koaStatic(path.resolve(__dirname, "../public")));
 
 // body解析
 app.use(bodyParser())

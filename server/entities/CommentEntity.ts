@@ -12,10 +12,9 @@ export default class CommentEntity extends BaseEntity  implements CommentType {
 
     @IsNotEmpty()
     @Type(() => String)
-    time: string;
+    time: number;
 
     @IsNotEmpty()
-    @IsUrl()
     @Type(() => String)
     avatar: string;
 

@@ -18,5 +18,11 @@ export interface IAdminInfo {
 }
 
 export interface IAddAdmin extends AdminType {
-    confirmPwd: string;
+    confirmpwd: string;
+}
+
+export interface IUpdatePwd {
+    loginpwd: string;
+    newpwd: string;
+    confirmpwd: string;
 }

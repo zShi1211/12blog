@@ -7,15 +7,15 @@ import BaseEntity from './baseEntity';
 
 export default class SubCommentEntity  extends BaseEntity implements SubCommentType {
     @IsNotEmpty()
-    @Type(() => String)
-    replyId: string;
+    @Type(() => Number)
+    replyId: number;
 
 
     @Type(() => Boolean)
     isReplySubComment: boolean;
 
-    @Type(() => String)
-    replySubId?: string | null | undefined;
+    @Type(() => Number)
+    replySubId?: number | null | undefined;
 
 
     @IsNotEmpty()
@@ -24,10 +24,9 @@ export default class SubCommentEntity  extends BaseEntity implements SubCommentT
 
     @IsNotEmpty()
     @Type(() => String)
-    time: string;
+    time: number;
 
     @IsNotEmpty()
-    @IsUrl()
     @Type(() => String)
     avatar: string;
 

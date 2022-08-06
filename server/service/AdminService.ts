@@ -1,12 +1,18 @@
 import AdminEntity from "../entities/AdminEntity";
 import Admin from "../model/Admin";
 import md5 from 'md5';
-import { IAddAdmin, IAdminInfo } from "./types";
+import { IAddAdmin, IAdminInfo, IUpdatePwd } from "./types";
 import parserValidate from "./utils/parserValidateErr";
 
 export default class AdminService {
     static async add(admin: IAddAdmin) {
-        if (admin.loginpwd !== admin.confirmPwd)
+        const r = await Admin.findOne({
+            where: {
+                loginid: admin.loginid
+            }
+        })
+        if (r) throw Error("用户已存在")
+        if (admin.loginpwd !== admin.confirmpwd)
             throw Error("两次密码不一致");
         const a = AdminEntity.transform(admin);
         const res = await a.validate();
@@ -28,16 +34,29 @@ export default class AdminService {
         }) */
     }
 
-    static async updatePwd(id: string, pwdOjb: IAddAdmin) {
-        if (pwdOjb.loginpwd !== pwdOjb.confirmPwd)
+    static async updatePwd(id: string, pwdObj: IUpdatePwd) {
+        const r = await Admin.findOne({
+            where: {
+                id,
+                loginpwd: md5(pwdObj.loginpwd)
+            }
+        })
+        if (!r) {
+            throw Error("密码错误");
+        }
+        if (pwdObj.newpwd !== pwdObj.confirmpwd)
             throw Error("两次密码不一致");
-        const a = AdminEntity.transform(pwdOjb);
+
+
+        // 将新密码复制非旧密码进行验证
+        pwdObj.loginpwd = pwdObj.newpwd;
+
+        const a = AdminEntity.transform(pwdObj);
         const res = await a.validate(true);
         if (res) throw parserValidate(res);
-
         const instance = await Admin.findByPk(id);
-        if (a.loginpwd) {
-            a.loginpwd = md5(a.loginpwd);
+        if (pwdObj.newpwd) {
+            a.loginpwd = md5(pwdObj.newpwd);
         }
         return (await instance?.update(a))?.toJSON();
     }
@@ -53,7 +72,6 @@ export default class AdminService {
     }
 
     static async login({ loginid, loginpwd }: IAdminInfo) {
-        console.log(loginid, loginpwd)
         return (await Admin.findOne({
             where: {
                 loginid,

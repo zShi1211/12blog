@@ -6,7 +6,7 @@ export default class Letter extends Model<InferAttributes<Letter>, InferCreation
     id: CreationOptional<number>;
     nickname: string;
     content: string;
-    time: string;
+    time: number;
     avatar: string;
     isPrivate: boolean;
 }
@@ -27,7 +27,14 @@ Letter.init({
     },
     time: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        get() {
+            const rawValue = this.getDataValue('time');
+            return new Date(rawValue).valueOf();
+          },
+          set(value: number) {
+              this.setDataValue('time', new Date(value).valueOf());
+          }
     },
     avatar: {
         type: DataTypes.STRING,

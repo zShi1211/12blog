@@ -13,6 +13,7 @@
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-jwt": "^4.0.3",
+    "koa-static": "^5.0.0",
     "koa-static-cache": "^5.1.4",
     "md5": "^2.3.0",
     "mockjs": "^1.1.0",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.8",
     "@types/koa-bodyparser": "^4.3.7",
+    "@types/koa-static": "^4.0.2",
     "@types/koa-static-cache": "^5.1.1",
     "@types/mockjs": "^1.0.6"
   }

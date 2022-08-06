@@ -40,7 +40,7 @@ const upload = koaMulter({
 
 router.post(
     '/',
-    upload.single('image'),
+    upload.single('file'),
     ctx => {
         let filename = path.join("/upload",ctx.request.file.filename);
         filename = filename.replace(/\\\\?/g, "\/");

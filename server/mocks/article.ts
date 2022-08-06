@@ -10,7 +10,8 @@ const data = mockjs.mock({
         like: 200,
         words:1000,
         description:"@cparagraph(1,5)",
-        ispublish: "@pick([0,1])"
+        ispublish: "@pick([0,1])",
+        mdString:"@cparagraph(5,10)"
     }]
 }).datas;
 

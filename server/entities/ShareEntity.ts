@@ -18,7 +18,7 @@ export default class ShareEntity extends BaseEntity implements ShareType {
 
     @IsNotEmpty()
     @Type(() => String)
-    time: string;
+    time: number;
 
     static transform(obj: any) {
         return super.plainToClass(this, obj);

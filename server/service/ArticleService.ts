@@ -38,6 +38,7 @@ export default class ArticleService {
         limit = 2,
         sort = "DESC"
     }: ISeartchCondition) {
+        console.log(key, page, limit, sort)
         const res = await Article.findAndCountAll({
             where: {
                 title: {

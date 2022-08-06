@@ -1,4 +1,4 @@
-import { Model, DataTypes,  CreationOptional, InferAttributes, InferCreationAttributes } from 'sequelize'
+import { Model, DataTypes, CreationOptional, InferAttributes, InferCreationAttributes } from 'sequelize'
 import sequelize from './db'
 import { ArticleType } from './types';
 
@@ -7,11 +7,12 @@ export default class Article extends Model<InferAttributes<Article>, InferCreati
 
     title: string;
     content: string;
-    time: string;
+    time: number;
     like: number;
     words: string;
     description: string;
     ispublish?: boolean;
+    mdString: string;
 }
 
 Article.init({
@@ -30,7 +31,14 @@ Article.init({
     },
     time: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        get() {
+            const rawValue = this.getDataValue('time');
+            return new Date(rawValue).valueOf();
+        },
+        set(value: number) {
+            this.setDataValue('time', new Date(value).valueOf());
+        }
     },
     like: {
         type: DataTypes.INTEGER,
@@ -48,6 +56,10 @@ Article.init({
     },
     ispublish: {
         type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
+    mdString: {
+        type: DataTypes.TEXT,
         defaultValue: false
     }
 }, { tableName: 'article', sequelize });

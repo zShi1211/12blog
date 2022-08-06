@@ -1,8 +1,4 @@
-import ArticleEntity from "../entities/ArticleEntity";
-import Article from "../model/Article";
-import sequelize from "../model/db";
-import { IPagingCondition, ISeartchCondition } from "./types";
-import { Op } from 'sequelize'
+import { IPagingCondition,  } from "./types";
 import LetterEntity from "../entities/LetterEntity";
 import Letter from "../model/Letter";
 import parserValidate from "./utils/parserValidateErr";

@@ -7,11 +7,11 @@ export default class SubComment extends Model<InferAttributes<SubComment>, Infer
 
     nickname: string;
     content: string;
-    time: string;
+    time: number;
     avatar: string;
-    replyId: string;
+    replyId: number;
     isReplySubComment: boolean;
-    replySubId?: string | null;
+    replySubId?: number | null;
 }
 
 SubComment.init({
@@ -30,7 +30,14 @@ SubComment.init({
     },
     time: {
         type: DataTypes.DATE,
-        allowNull: false
+        allowNull: false,
+        get() {
+            const rawValue = this.getDataValue('time');
+            return new Date(rawValue).valueOf();
+        },
+        set(value: number) {
+            this.setDataValue('time', new Date(value).valueOf());
+        }
     },
     avatar: {
         type: DataTypes.STRING,
@@ -38,7 +45,7 @@ SubComment.init({
     },
     // foreignKey
     replyId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false
     },
     isReplySubComment: {
