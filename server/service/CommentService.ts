@@ -34,8 +34,11 @@ export default class CommentService {
             where: {
                 articleId
             },
-            include: SubComment,
-            group: "Comment.nickname"
+            include: {
+                model: SubComment,
+            },
+            group: "Comment.nickname",
+            order: [['time', "desc"],["SubComments", 'time', "desc"]]
         })
         res.rows = res.rows.map(data => data.toJSON())
         return res;

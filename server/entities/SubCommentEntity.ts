@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { IsDate, IsNotEmpty, IsNumber, IsUrl } from 'class-validator'
+import { IsDate, IsNotEmpty, IsNumber, IsUrl, Length } from 'class-validator'
 // 将type类型带入到编译结果中
 import { Type } from 'class-transformer'
 import { CommentType, SubCommentType } from '../model/types';
@@ -23,7 +23,7 @@ export default class SubCommentEntity  extends BaseEntity implements SubCommentT
     content: string;
 
     @IsNotEmpty()
-    @Type(() => String)
+    @Type(() => Date)
     time: number;
 
     @IsNotEmpty()
@@ -32,6 +32,7 @@ export default class SubCommentEntity  extends BaseEntity implements SubCommentT
 
     @IsNotEmpty()
     @Type(() => String)
+    @Length(1, 6)
     nickname: string;
 
     static transform(obj: any) {

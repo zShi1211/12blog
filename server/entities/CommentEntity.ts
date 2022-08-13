@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { IsDate, IsNotEmpty, IsNumber, IsUrl } from 'class-validator'
+import { IsDate, IsNotEmpty, IsNumber, IsUrl, Length } from 'class-validator'
 // 将type类型带入到编译结果中
 import { Type } from 'class-transformer'
 import {  CommentType } from '../model/types';
@@ -11,7 +11,7 @@ export default class CommentEntity extends BaseEntity  implements CommentType {
     content: string;
 
     @IsNotEmpty()
-    @Type(() => String)
+    @Type(() => Date)
     time: number;
 
     @IsNotEmpty()
@@ -20,6 +20,7 @@ export default class CommentEntity extends BaseEntity  implements CommentType {
 
     @IsNotEmpty()
     @Type(() => String)
+    @Length(1, 6)
     nickname: string;
 
     @IsNotEmpty()

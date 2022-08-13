@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npm-run-all -p dev:*",
     "dev:server": "cd server && npx nodemon -x ts-node index.ts",
-    "dev:back": "cd back && npm start"
+    "dev:back": "cd back && npm start",
+    "dev:front": "cd front && npm run dev"
   },
   "repository": {
     "type": "git",

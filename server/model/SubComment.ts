@@ -36,6 +36,7 @@ SubComment.init({
             return new Date(rawValue).valueOf();
         },
         set(value: number) {
+            console.log(typeof value)
             this.setDataValue('time', new Date(value).valueOf());
         }
     },

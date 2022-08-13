@@ -36,9 +36,6 @@ Article.init({
             const rawValue = this.getDataValue('time');
             return new Date(rawValue).valueOf();
         },
-        set(value: number) {
-            this.setDataValue('time', new Date(value).valueOf());
-        }
     },
     like: {
         type: DataTypes.INTEGER,

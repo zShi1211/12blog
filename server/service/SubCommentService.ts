@@ -8,7 +8,7 @@ export default class CommentService {
     static async add(comment: object) {
         const c = SubCommentEntity.transform(comment);
         const res = await c.validate();
-        if (res) throw  parserValidate(res);
+        if (res) throw parserValidate(res);
         return (await SubComment.create(c)).toJSON();
     }
 

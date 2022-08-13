@@ -28,6 +28,7 @@ export default class LetterService {
         const res = await Letter.findAndCountAll({
             limit:+limit,
             offset: (offest - 1) * limit,
+            order:[["time","desc"]]
         })
         res.rows = res.rows.map(data => data.toJSON());
         return res;

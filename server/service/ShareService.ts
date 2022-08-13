@@ -11,7 +11,7 @@ export default class ShareService {
     static async add(share: object) {
         const s = ShareEntity.transform(share);
         const res = await s.validate();
-        if (res) return  parserValidate(res);
+        if (res) throw parserValidate(res);
         return (await Share.create(s)).toJSON();
     }
 
@@ -37,8 +37,9 @@ export default class ShareService {
         limit = 2,
     }: IPagingCondition) {
         const res = await Share.findAndCountAll({
-            limit:+limit,
+            limit: +limit,
             offset: (offest - 1) * limit,
+            order: [["time", "desc"]]
         })
         res.rows = res.rows.map(data => data.toJSON());
         return res;

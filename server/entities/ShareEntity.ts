@@ -7,7 +7,6 @@ import BaseEntity from './baseEntity';
 
 export default class ShareEntity extends BaseEntity implements ShareType {
     @IsNotEmpty()
-    @IsUrl()
     @Type(() => String)
     pictureUrl: string;
 
@@ -17,7 +16,7 @@ export default class ShareEntity extends BaseEntity implements ShareType {
     description: string;
 
     @IsNotEmpty()
-    @Type(() => String)
+    @Type(() => Date)
     time: number;
 
     static transform(obj: any) {

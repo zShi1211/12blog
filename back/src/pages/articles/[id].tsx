@@ -16,6 +16,7 @@ export default function UpdateArticle({ match: { params }, history }) {
             {
                 articleData ?
                     <EditorArticle defaultArtcileAData={articleData} onEimt={async (data) => {
+                        console.log(data)
                         const res: any = await updateArticle(params.id, data);
                         if (!res.err) {
                             message.success("修改成功");

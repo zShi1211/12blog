@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { IsNotEmpty, IsUrl } from 'class-validator'
+import { IsNotEmpty, IsUrl, Length } from 'class-validator'
 // 将type类型带入到编译结果中
 import { Type } from 'class-transformer'
 import { LetterType } from '../model/types';
@@ -8,6 +8,7 @@ import BaseEntity from './baseEntity';
 export default class LetterEntity extends BaseEntity implements LetterType {
     @IsNotEmpty()
     @Type(() => String)
+    @Length(1, 6)
     nickname: string;
 
     @IsNotEmpty()
@@ -15,7 +16,7 @@ export default class LetterEntity extends BaseEntity implements LetterType {
     content: string;
 
     @IsNotEmpty()
-    @Type(() => String)
+    @Type(() => Date)
     time: number;
 
     @IsNotEmpty()

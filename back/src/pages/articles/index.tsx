@@ -1,5 +1,5 @@
 import { getAllArticle, ISeartchCondition, rmArticle, updateArticle } from '@/api/article';
-import { Space, Table, Tag, Button, Popconfirm, Input, message, Switch } from 'antd';
+import { Space, Table, Tag, Button, Popconfirm, Input, message, Switch, Empty } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
@@ -188,7 +188,7 @@ const Aritcle: React.FC<IProps> = () => {
                     >
                         <Button type="primary" danger>删除</Button>
                     </Popconfirm>
-                    <Link to={`/updateArticle/${id}`}> <Button type='primary'> 编辑</Button></Link>
+                    <Link to={`/articles/${id}`}> <Button type='primary'> 编辑</Button></Link>
                 </Space></>)
             },
         },
@@ -196,28 +196,36 @@ const Aritcle: React.FC<IProps> = () => {
 
     return (
         <>
-            <Input.Group compact>
-                <Input style={{ width: "300px" }} value={searchKey} onChange={e => {
-                    setSearchKey(e.target.value.trim())
-                }} />
-                <Button type="primary" onClick={() => {
-                    setQuery({
-                        ...query,
-                        key: searchKey
-                    })
-                }}>搜索</Button>
-            </Input.Group>
+            {
+                articleData.count ?
+                    <>
+                        <Input.Group compact>
+                            <Input style={{ width: "300px" }} value={searchKey} onChange={e => {
+                                setSearchKey(e.target.value.trim())
+                            }} />
+                            <Button type="primary" onClick={() => {
+                                setQuery({
+                                    ...query,
+                                    key: searchKey
+                                })
+                            }}>搜索</Button>
+                        </Input.Group>
 
-            <Table columns={columns} dataSource={data} pagination={{
-                total: articleData.count,
-                current: query.page,
-                pageSize: query.limit,
-                onChange(page) {
-                    setQuery({
-                        page
-                    })
-                }
-            }} /></>
+                        <Table columns={columns} dataSource={data} pagination={{
+                            total: articleData.count,
+                            current: query.page,
+                            pageSize: query.limit,
+                            onChange(page) {
+                                setQuery({
+                                    page
+                                })
+                            }
+                        }} />
+                    </>
+                    :
+                    <Empty />
+            }
+        </>
     )
 };
 

@@ -1,6 +1,5 @@
 import ArticleEntity from "../entities/ArticleEntity";
 import Article from "../model/Article";
-import sequelize from "../model/db";
 import { ISeartchCondition } from "./types";
 import { Op } from 'sequelize'
 import parserValidate from "./utils/parserValidateErr";
@@ -8,6 +7,7 @@ import parserValidate from "./utils/parserValidateErr";
 export default class ArticleService {
     static async add(aritle: object) {
         const a = ArticleEntity.transform(aritle);
+        console.log(a)
         const res = await a.validate();
         if (res) throw parserValidate(res);
 

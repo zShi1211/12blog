@@ -29,15 +29,12 @@ Comment.init({
         allowNull: false
     },
     time: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: false,
         get() {
             const rawValue = this.getDataValue('time');
             return new Date(rawValue).valueOf();
         },
-        set(value: number) {
-            this.setDataValue('time', new Date(value).valueOf());
-        }
     },
     avatar: {
         type: DataTypes.STRING,

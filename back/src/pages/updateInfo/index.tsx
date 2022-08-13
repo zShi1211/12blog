@@ -2,7 +2,7 @@ import admin from '@/models/admin';
 import { connect, History } from 'umi'
 import { Button, Avatar, Form, Input } from 'antd';
 import { IAdminInfo } from '../index/types';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { UploadOutlined } from '@ant-design/icons';
 import { useEffect, useState } from 'react';
 import { message, Upload } from 'antd';
 import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
@@ -11,7 +11,7 @@ import type { UploadChangeParam } from 'antd/es/upload';
 
 interface IProps {
     adminInfo: IAdminInfo;
-    fetchUpdateInfo: (newInfo: IAdminInfo) => boolean
+    fetchLogin: (newInfo: IAdminInfo) => boolean
 }
 
 const props: UploadProps = {
@@ -19,9 +19,8 @@ const props: UploadProps = {
     action: '/api/upload',
 };
 
-function UploadInfo({ adminInfo, fetchUpdateInfo: fetchLogin }: IProps) {
+function UploadInfo({ adminInfo, fetchLogin }: IProps) {
 
-    const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>(adminInfo.avatar);
 
     useEffect(() => {
@@ -46,13 +45,7 @@ function UploadInfo({ adminInfo, fetchUpdateInfo: fetchLogin }: IProps) {
 
 
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
-        if (info.file.status === 'uploading') {
-            setLoading(true);
-            return;
-        }
         if (info.file.status === 'done') {
-            setLoading(false);
-            console.log(info.file.response.data)
             setImageUrl(info.file.response.data);
         }
     };
@@ -79,9 +72,12 @@ function UploadInfo({ adminInfo, fetchUpdateInfo: fetchLogin }: IProps) {
                         name="file"
                         showUploadList={false}
                         action="/api/upload"
+                        listType="picture-card"
                         onChange={handleChange}
                     >
-                        {<img src={imageUrl} alt="avatar" style={{ width: '100%' }} />}
+                        {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> :
+                            <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                        }
                     </Upload>
                 </Form.Item>
 

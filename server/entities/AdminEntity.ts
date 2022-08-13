@@ -1,5 +1,5 @@
 import 'reflect-metadata'
-import { IsNotEmpty, IsUrl, Max, MaxLength, Min, MIN, MinLength } from 'class-validator'
+import { IsNotEmpty, IsUrl, Length, Max, MaxLength, Min, MIN, MinLength } from 'class-validator'
 // 将type类型带入到编译结果中
 import { Type } from 'class-transformer'
 import { AdminType } from '../model/types';
@@ -9,6 +9,7 @@ export default class AdminEntity extends BaseEntity implements AdminType {
 
     @IsNotEmpty()
     @Type(() => String)
+    @Length(1, 6)
     nickname: string;
 
 
@@ -18,7 +19,7 @@ export default class AdminEntity extends BaseEntity implements AdminType {
     @Type(() => String)
     loginid: string;
 
-    
+
     @IsNotEmpty()
     @Type(() => String)
     @MinLength(6)

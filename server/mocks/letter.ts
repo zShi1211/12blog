@@ -3,8 +3,7 @@ import Letter from '../model/Letter'
 
 const data = mockjs.mock({
     "datas|5": [{
-        "id|+1": 1,
-        nickname: "@cparagraph(5,10)",
+        nickname: "@cname",
         content: '@cparagraph(200,550)',
         time: '@date("yyyy-MM-dd")',
         avatar: `@image('300x250')`,

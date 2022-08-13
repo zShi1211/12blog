@@ -1,0 +1,19 @@
+@import "//at.alicdn.com/t/c/font_3580920_4c378tltuvu.css";
+
+::-webkit-scrollbar {
+    width: 7px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+#app {
+    height: 100vh;
+}
+
+.iconfont {
+    font-size: inherit;
+}

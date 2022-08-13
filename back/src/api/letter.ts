@@ -1,4 +1,5 @@
 import axios from './axiosInstance';
+import { IPagingCondition } from './comment';
 
 // 获取一封信
 export function getOneLetter(id: string) {
@@ -6,12 +7,8 @@ export function getOneLetter(id: string) {
 }
 
 // 分页获取多封信
-export interface IPagingCondition {
-    offest?: number;
-    limit?: number;
-}
-export function getAllLetter(info: IPagingCondition) {
-    return axios.get(`/letter?offest=${info.offest}&limit=${info.limit}`);
+export function getAllLetter({ offest = 1, limit = 5 }: IPagingCondition) {
+    return axios.get(`/letter?offest=${offest}&limit=${limit}`);
 }
 
 // 添加一封信
