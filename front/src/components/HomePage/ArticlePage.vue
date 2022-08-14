@@ -1,92 +1,109 @@
+
 <script setup lang='ts'>
-import BaseTemplateVue from './BaseTemplate.vue';
+import LeapBallsVue from '../LeapBalls.vue';
 </script>
 
 <template>
-    <BaseTemplateVue to="/a" name="aaa" title="Title" content="dsffffffff fsdfsdfds fsdfds fdsfsdf "
-        :style="{ background: '#cad8d8' }">
-        <div class="leap-balls">
-            <div class="balls">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="circle"></div>
+    <div class="box">
+        <h1 class="title">Blog.</h1>
+        <router-link to="/articles" class="content">
+            <div class="detail">
+                detail
             </div>
-            <div class="shadows">
-                <div class="shadow"></div>
-                <div class="shadow"></div>
-                <div class="shadow"></div>
+            <p class="name">
+                网络日志
+            </p>
+            <div class="animation">
+                <LeapBallsVue />
             </div>
-        </div>
-    </BaseTemplateVue>
+            <div class="description">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex et velit quia rem aspernatur quibusdam ea voluptate perspiciatis eius? Placeat.
+            </div>
+        </router-link>
+    </div>
 </template>
 
 <style  scoped>
-.leap-balls {
-    width: 150px;
-    height: 100px;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 50% 50%;
+.title {
+    font-size: 120px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-align: left;
+    transform: translateY(25px);
+    position: relative;
+    z-index: 10;
+    color: #fff;
 }
 
-.balls,
-.shadows {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 100%;
-    justify-items: center;
-    align-items: end;
+
+
+.box {
+    padding: 0 10% 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
-.circle {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #fff;
-    animation: balls-leap 0.5s alternate-reverse infinite ease;
+
+.content {
+    background: #fff;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10% 20%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: #0066ce;
 }
 
-.shadow {
-    width: 20px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.4);
-    animation: balls-shadow 0.5s alternate-reverse infinite ease;
+.detail {
+    width: 110px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    background: #000;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    transform: translateY(-100%);
+    transition: all 0.4s;
 }
 
-.shadow:nth-child(2),
-.circle:nth-child(2) {
-    animation-delay: 0.2s;
-}
-.shadow:nth-child(3),
-.circle:nth-child(3) {
-    animation-delay: 0.3s;
+.name {
+    font-size: 50px;
+    font-weight: 500;
+    transition: all 0.3s;
 }
 
-@keyframes balls-leap {
-    0% {
-        border-radius: 50px 50px 25px 25px;
-        transform: translateY(45px);
-    }
-
-    40% {
-        border-radius: 50%;
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
+.description {
+    line-height: 1.5;
+    transition: all 0.3s;
 }
 
-@keyframes balls-shadow {
-    0% {
-        transform: scaleX(1.1);
-        opacity: 0.7;
-    }
+.animation {
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+}
 
-    100% {
-        transform: scaleX(0.2);
-        opacity: 0.4;
-    }
+.content:hover .detail {
+    transform: translateY(0);
+}
+
+.content:hover .name {
+    transform: translateY(-10px);
+}
+
+.content:hover .animation {
+    transform: translateY(-5px);
+}
+
+.content:hover .description {
+    transform: translateY(10px);
+    /* line-height: 1.6; */
 }
 </style>

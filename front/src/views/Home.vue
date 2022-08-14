@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 import StartExplore from '@/components/HomePage/StartExplore.vue'
 import ArticlePage from '@/components/HomePage/ArticlePage.vue';
-import MusicPage from '@/components/HomePage/MusicPage.vue';
 
 </script>
 
@@ -15,7 +14,6 @@ import MusicPage from '@/components/HomePage/MusicPage.vue';
         </div>
         <div class="section" style="--i:2">
             <div class="wrapper">
-                <MusicPage />
             </div>
         </div>
         <div class="section" style="--i:3">

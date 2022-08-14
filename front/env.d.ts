@@ -1,10 +1,17 @@
 /// <reference types="vite/client" />
 
-declare module '*.vue' {
-    import { App, defineComponent } from 'vue'
-    const component: ReturnType<typeof defineComponent> & {
-      install(app: App): void
-    }
-    export default component
+
+/* declare module "*.vue" {
+  import { defineComponent } from "vue";
+  const Component: ReturnType<typeof defineComponent>;
+  export default Component;
+} */
+export { };
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    $dateFormat: (date: Date) => string;
   }
-  
+}
+
+
+
