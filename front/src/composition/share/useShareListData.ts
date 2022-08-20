@@ -16,7 +16,7 @@ interface ITotalShare {
 export default function useShareListData() {
     const searchConditon = reactive({
         offest: 1,
-        limit: 2
+        limit: 5
     });
     const totalShare = reactive<ITotalShare>({
         count: 0,

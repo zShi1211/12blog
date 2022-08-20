@@ -76,7 +76,7 @@ function dateBackHandle() {
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, #efdecd, #efdecd 50%, #bcd4e6 50%, #bcd4e6);
-  clip-path:polygon(100% 10%, 100% 100%, 0% 100%, 0% 80%);
+  clip-path:polygon(100% 0%, 100% 100%, 0% 100%, 0% 80%);
   animation: animate 5s ease-in-out infinite;
 }
 

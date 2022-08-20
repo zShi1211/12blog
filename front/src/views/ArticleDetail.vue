@@ -90,7 +90,6 @@ function onTouchBottomHandle() {
         clearTouchBottom();
     };
     searchConditon.value.offest++;
-    console.log(searchConditon.value)
 }
 
 

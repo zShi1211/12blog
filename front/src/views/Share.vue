@@ -1,20 +1,19 @@
 <script setup lang='ts'>
 import SpinTwoBallsVue from '@/components/Loading/SpinTwoBalls.vue';
 import useShareListData from '@/composition/share/useShareListData';
-import type { NumericLiteral } from '@babel/types';
 import { computed } from '@vue/reactivity';
-import { defineComponent, watch } from 'vue'
-import { reactive, ref } from 'vue';
+import { watch } from 'vue'
+import { ref } from 'vue';
 const { totalShare, searchConditon, loading } = useShareListData()
 
 const currentPage = ref(0);
 
-const allDataLoadDone = computed(() => {
+const isShareLoadDone = computed(() => {
     return totalShare.count <= totalShare.rows.length
 })
 
 const stop = watch(currentPage, () => {
-    if (allDataLoadDone.value) {
+    if (isShareLoadDone.value) {
         //  如果全部数据加载完毕就取消监听
         stop();
         return;
@@ -57,7 +56,7 @@ function changePageHandle(newPage: number) {
                     </div>
                 </div>
             </div>
-            <SpinTwoBallsVue :style="{ position: 'absolute', zIndex: 1 }" v-if="loading" />
+            <SpinTwoBallsVue :style="{ position: 'absolute', zIndex: 1 }" v-if="loading && !isShareLoadDone" />
             <div class="backCover bookItem"
                 :style="{ '--p': 0 + (currentPage > totalShare.count + 1 ? totalShare.count + 2 : 0) }"
                 :class="{ pass: currentPage > totalShare.count + 1 }"></div>
@@ -97,7 +96,7 @@ img {
     transform-style: preserve-3d;
     transition: all 1.5s;
     width: 500px;
-    color: #e7feff;
+    color: #123;
 }
 
 .book.open {
@@ -112,6 +111,7 @@ img {
     position: absolute;
     z-index: var(--p);
     transition: all 1.5s;
+    will-change: transform;
 }
 
 .frontCover,
@@ -139,7 +139,9 @@ img {
     height: 90%;
     width: 90%;
     box-sizing: border-box;
-    background: #5d8aa8;
+    /* background: #456; */
+    background: url("@/assets/img/letter_bg.png");
+
 }
 
 
@@ -160,7 +162,6 @@ img {
 }
 
 .content {
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -191,6 +192,7 @@ img {
     min-height: 80px;
     max-height: 120px;
     overflow-y: auto;
+    line-height: 1.4;
 }
 
 .operate {

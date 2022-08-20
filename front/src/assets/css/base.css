@@ -1,4 +1,4 @@
-@import "//at.alicdn.com/t/c/font_3580920_a5syi0qgiro.css";
+@import "//at.alicdn.com/t/c/font_3580920_988v12iyxsw.css";
 
 ::-webkit-scrollbar {
     width: 7px;
@@ -8,10 +8,6 @@
 ::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-}
-
-#app {
-    /* height: 100vh; */
 }
 
 .iconfont {

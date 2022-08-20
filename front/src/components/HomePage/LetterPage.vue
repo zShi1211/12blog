@@ -117,12 +117,14 @@ async function onSubmitHandle() {
 
 .emit-leave-active {
     animation: emitting 2s infinite;
+    will-change: animation;
 }
 
 
 .emit-enter-active {
     opacity: 0;
     transition: all 1s;
+    will-change: transform;
 }
 
 .emit-enter-to {
@@ -155,6 +157,7 @@ async function onSubmitHandle() {
 .box.emitting .form {
     transform: translateY(50%);
     transition: all 2.4s;
+    will-change: transform;
 }
 
 
