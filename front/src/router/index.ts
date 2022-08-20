@@ -14,6 +14,14 @@ const router = createRouter({
     {
       path: "/articleDetail/:id",
       component: import("@/views/ArticleDetail.vue"),
+    },
+    {
+      path: "/share",
+      component: import("@/views/Share.vue"),
+    },
+    {
+      path: "/letters",
+      component: import("@/views/Letters.vue"),
     }
   ]
 })

@@ -27,11 +27,9 @@ export default function useArticleListData() {
         rows: []
     });
     watchEffect(async () => {
-        console.log('getdata')
         const res = (await getAllArticle(searchConditon.value)).data as any;
         articlesList.value.count = res.count;
         articlesList.value.rows.push(...res.rows);
-
     })
     return {
         searchConditon,

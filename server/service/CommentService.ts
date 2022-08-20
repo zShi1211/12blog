@@ -28,7 +28,12 @@ export default class CommentService {
         offest = 1,
         limit = 10,
     }: IPagingCondition) {
-        const res = await Comment.findAndCountAll({
+        const count = await Comment.count({
+            where: {
+                articleId
+            }
+        });
+        const res: any = await Comment.findAndCountAll({
             limit: +limit,
             offset: (offest - 1) * limit,
             where: {
@@ -37,10 +42,13 @@ export default class CommentService {
             include: {
                 model: SubComment,
             },
-            group: "Comment.nickname",
-            order: [['time', "desc"],["SubComments", 'time', "desc"]]
+            order: [['time', "desc"], ["SubComments", 'time', "asc"]]
         })
-        res.rows = res.rows.map(data => data.toJSON())
+        res.rows = res.rows.map((data: any) => data.toJSON());
+        // 父评论+子评论
+        res.countAll = res.count;
+        // 父评论
+        res.count = count;
         return res;
     }
 }

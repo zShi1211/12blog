@@ -1,14 +1,14 @@
 import styles from './index.css'
 import React, { useState } from 'react'
-import { connect } from 'umi';
+import { connect,  history } from 'umi';
 import { IFetchLogin, ILoginInfo, IRegisterInfo } from './types';
 import { message } from 'antd';
 import { register } from '@/api/admin';
-import avatar from '@/assets/image/avatar.jpg'
+import avatar from '@/assets/img/avatar.jpg'
 
 
 
-const Login: React.FC<{ fetchLogin: IFetchLogin }> = ({ fetchLogin }) => {
+const Login: React.FC<{ fetchLogin: IFetchLogin, }> = ({ fetchLogin, }) => {
     // 登录/注册类名切换
     const [active, setActive] = useState<string>("");
 
@@ -44,11 +44,12 @@ const Login: React.FC<{ fetchLogin: IFetchLogin }> = ({ fetchLogin }) => {
                         </p>
                         <p>
                             <button onClick={async () => {
-                                message.loading("登录中~",0);
+                                message.loading("登录中~", 0);
                                 const res = await fetchLogin(loginInfo);
                                 message.destroy();
                                 if (res) {
                                     message.success("登录成功！")
+                                    history.push('/')
                                 } else {
                                     message.error("登录失败！")
                                 }

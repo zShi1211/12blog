@@ -11,6 +11,7 @@ interface LetterType {
     avatar: string;
     nickname: string;
     content: string;
+    isPrivate: boolean;
     time: number;
 }
 
@@ -74,6 +75,16 @@ export default function Letters() {
             width: 150
         },
         {
+            title: "仅博主可见",
+            dataIndex: "isPrivate",
+            render: t => {
+                return t ? <Tag color="#108ee9">yes</Tag>
+                    :
+                    <Tag color="#f50">no</Tag>
+            },
+            width: 150
+        },
+        {
             title: '操作',
             key: 'action',
             render: (_, { id }) => (
@@ -88,7 +99,7 @@ export default function Letters() {
             ),
         },
     ];
-
+    console.log(letterData.rows)
     return (
         <>
             <Table columns={columns} dataSource={letterData.rows} pagination={{

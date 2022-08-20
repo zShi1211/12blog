@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { onMounted, onUnmounted, ref } from '@vue/runtime-dom';
 import { useThemeStore } from "@/stores/themte"
+import ThemeSwitchVue from '../ThemeSwitch.vue';
 const scrollY = ref(0)
 
 const themeStore = useThemeStore();
@@ -38,12 +39,7 @@ onMounted(() => {
             <h1 class="logo">
                 LOGO
             </h1>
-            <div class="switchTheme" @click="themeStore.switchTheme">
-                <Transition name="theme" mode="default">
-                    <i class="iconfont icon-moonbyueliang" v-if="themeStore.theme === 'light'"></i>
-                    <i class="iconfont icon-weibiaoti-" v-else></i>
-                </Transition>
-            </div>
+            <ThemeSwitchVue />
         </nav>
     </div>
 
@@ -103,7 +99,7 @@ onMounted(() => {
      left: 0;
      position: absolute;
      object-fit: cover;
-    will-change: transform;
+     will-change: transform;
  }
  
  .moon,
@@ -111,13 +107,5 @@ onMounted(() => {
      mix-blend-mode: screen;
  }
  
- .theme-enter-from,
- .theme-leave-to {
-     opacity: 0
- }
- 
- .theme-enter-active,
- .theme-leave-active {
-     transition: opacity 0.5s;
- }
+
  </style>

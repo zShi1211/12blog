@@ -20,7 +20,7 @@ export default class CommentEntity extends BaseEntity  implements CommentType {
 
     @IsNotEmpty()
     @Type(() => String)
-    @Length(1, 6)
+    @Length(1, 16)
     nickname: string;
 
     @IsNotEmpty()

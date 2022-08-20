@@ -1,7 +1,8 @@
 <script setup lang='ts'>
 import StartExplore from '@/components/HomePage/StartExplore.vue'
 import ArticlePage from '@/components/HomePage/ArticlePage.vue';
-
+import ClockPage from '@/components/HomePage/ClockPage.vue';
+import LetterPage from '@/components/HomePage/LetterPage.vue';
 </script>
 
 <template>
@@ -14,21 +15,22 @@ import ArticlePage from '@/components/HomePage/ArticlePage.vue';
         </div>
         <div class="section" style="--i:2">
             <div class="wrapper">
+                <ClockPage />
             </div>
         </div>
         <div class="section" style="--i:3">
-            <div class="wrapper"></div>
+            <div class="wrapper">
+            </div>
         </div>
-        <div class="section" style="--i:4">
-            <div class="wrapper"></div>
-        </div>
+        <LetterPage />
+
     </div>
 </template>
 
 <style  scoped>
 .container {
     position: relative;
-    height: 100%;
+    height: 100vh;
     scroll-snap-type: y mandatory;
     overflow-x: hidden;
 }
@@ -52,19 +54,9 @@ import ArticlePage from '@/components/HomePage/ArticlePage.vue';
 }
 
 
-.section:nth-child(2) .wrapper {
-    background: #361f3b;
-}
-
-.section:nth-child(3) .wrapper {
-    background: #f7fc84;
-}
-
 .section:nth-child(4) .wrapper {
-    background: #999;
+    background: #e74;
+
 }
 
-.section:nth-child(5) .wrapper {
-    background: #e74;
-}
 </style>

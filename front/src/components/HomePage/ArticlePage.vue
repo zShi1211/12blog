@@ -1,29 +1,33 @@
 
 <script setup lang='ts'>
-import LeapBallsVue from '../LeapBalls.vue';
+import LeapBallsVue from '../Loading/LeapBalls.vue';
 </script>
 
 <template>
-    <div class="box">
-        <h1 class="title">Blog.</h1>
-        <router-link to="/articles" class="content">
-            <div class="detail">
-                detail
-            </div>
-            <p class="name">
-                网络日志
-            </p>
-            <div class="animation">
-                <LeapBallsVue />
-            </div>
-            <div class="description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex et velit quia rem aspernatur quibusdam ea voluptate perspiciatis eius? Placeat.
-            </div>
-        </router-link>
+    <div class="articlePageWrapper">
+        <div class="box">
+            <h1 class="title">Blog.</h1>
+            <router-link to="/articles" class="content">
+                <div class="detail">
+                    detail
+                </div>
+                <div class="animation">
+                    <LeapBallsVue />
+                </div>
+                <div class="description">
+                    <p>一点点胡言乱语...</p>
+                </div>
+            </router-link>
+        </div>
     </div>
 </template>
 
 <style  scoped>
+.articlePageWrapper{
+    height: 100%;
+    background: #361f3b;
+
+}
 .title {
     font-size: 120px;
     font-weight: 800;
@@ -47,7 +51,7 @@ import LeapBallsVue from '../LeapBalls.vue';
 
 
 .content {
-    background: #fff;
+    color: #fff;
     flex-grow: 1;
     display: flex;
     justify-content: space-around;
@@ -56,7 +60,7 @@ import LeapBallsVue from '../LeapBalls.vue';
     text-align: center;
     position: relative;
     overflow: hidden;
-    background: #0066ce;
+    background: #3d4d5e;
 }
 
 .detail {
@@ -73,11 +77,6 @@ import LeapBallsVue from '../LeapBalls.vue';
     transition: all 0.4s;
 }
 
-.name {
-    font-size: 50px;
-    font-weight: 500;
-    transition: all 0.3s;
-}
 
 .description {
     line-height: 1.5;
@@ -88,15 +87,13 @@ import LeapBallsVue from '../LeapBalls.vue';
     transition: all 0.3s;
     display: flex;
     justify-content: center;
+    padding-bottom: 15px;
 }
 
 .content:hover .detail {
     transform: translateY(0);
 }
 
-.content:hover .name {
-    transform: translateY(-10px);
-}
 
 .content:hover .animation {
     transform: translateY(-5px);

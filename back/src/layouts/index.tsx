@@ -1,7 +1,16 @@
-import { BasicLayoutProps } from "@ant-design/pro-layout";
+import { connect, history } from "umi";
 import '../assets/css/global.css'
 import Layout from '../component/Layout'
+import Login from '../pages/login'
 
-export default function index(props: BasicLayoutProps) {
-    return <Layout comp={props.children} />
+function index({ location, admin, children }) {
+    if (location.pathname.match("/login")) {
+        return <Login />
+    }
+
+    return <Layout comp={children} />
 }
+const mapState2Props = (store) => ({
+    admin: store.admin,
+})
+export default connect(mapState2Props)(index)

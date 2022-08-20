@@ -32,7 +32,7 @@ export default class SubCommentEntity  extends BaseEntity implements SubCommentT
 
     @IsNotEmpty()
     @Type(() => String)
-    @Length(1, 6)
+    @Length(1, 16)
     nickname: string;
 
     static transform(obj: any) {

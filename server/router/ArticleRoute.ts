@@ -24,6 +24,14 @@ router.get('/', async ctx => {
     ResponseHelper.sendData(res, ctx);
 })
 
+router.put('/:id/like', async ctx => {
+    const { id } = ctx.params;
+    const { body: { like } } = ctx.request;
+    const res = await ArticleService.update(id, { like })
+    ResponseHelper.sendData(res, ctx);
+
+})
+
 
 // 使用koajwt，发现请求头中存在Authorization，就会解析出信息放在state的userInfo中
 router.use(koaJwt({

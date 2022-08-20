@@ -40,7 +40,11 @@ Article.init({
     like: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        defaultValue: 0
+        defaultValue: 0,
+        set(value: number) {
+            console.log(value < 0 ? 0 : value)
+            this.setDataValue('like', value < 0 ? 0 : value);
+        }
     },
     words: {
         type: DataTypes.INTEGER,

@@ -20,7 +20,6 @@ const props: UploadProps = {
 };
 
 function UploadInfo({ adminInfo, fetchLogin }: IProps) {
-
     const [imageUrl, setImageUrl] = useState<string>(adminInfo.avatar);
 
     useEffect(() => {

@@ -7,6 +7,6 @@
 </template>
 
 <style >
-@import "@/assets/base.css";
-@import "@/assets/reset.css";
+@import "@/assets/css/base.css";
+@import "@/assets/css/reset.css";
 </style>

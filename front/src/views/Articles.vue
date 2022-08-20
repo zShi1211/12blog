@@ -1,9 +1,6 @@
 <script setup lang='ts'>
-import useArticleData from '@/composition/article/articleListData';
-import { useRoute } from 'vue-router';
+import useArticleData from '@/composition/article/usearticleListData';
 const { searchConditon, articlesList } = useArticleData();
-console.log(searchConditon)
-console.log(articlesList)
 
 </script>
 

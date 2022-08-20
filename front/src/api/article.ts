@@ -21,4 +21,9 @@ export function getAllArticle({
     return axios.get(`/article?page=${page}&limit=${limit}&key=${key}&sort=${sort}`);
 }
 
+export function likeArticle(id: string, like: number) {
+    return axios.put(`/article/${id}/like`, {
+        like
+    });
+}
 

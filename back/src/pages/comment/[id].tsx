@@ -25,7 +25,8 @@ interface ISubComment extends IComment {
 
 
 interface ICommendData {
-    count: [],
+    count: number,
+    countAll: number,
     rows: IComment[]
 }
 
@@ -261,7 +262,7 @@ function CommentList({ match, admin: { adminInfo } }) {
                 commentData ?
                     <>
                         {commentList}
-                        < Pagination current={paging.offest} pageSize={paging.limit} total={commentData.rows.length} onChange={(page) => {
+                        < Pagination current={paging.offest} pageSize={paging.limit} total={commentData.count} onChange={(page) => {
                             setPaging({
                                 ...paging,
                                 offest: page
