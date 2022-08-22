@@ -95,22 +95,27 @@ function dateBackHandle() {
 
 .dateBack {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
     color: transparent;
     font-size: 150px;
     display: flex;
     justify-content: space-between;
-    opacity: 0.3;
-    transition: all 0.5s;
+    opacity: 0.5;
+    transition: opacity,color  0.5s;
     cursor: pointer;
     padding: 0 20px;
     box-sizing: border-box;
     -webkit-text-stroke: 1px #fff;
     z-index: 100;
 }
-
+@media (max-width: 768px) {
+  .dateBack {
+    font-size: 25vw;
+    padding: 0;
+  }
+}
 .dateBack:hover {
     opacity: .5;
     color: #fff;
@@ -135,6 +140,7 @@ function dateBackHandle() {
 .box {
     position: relative;
     backdrop-filter: blur(50px);
+    -webkit-backdrop-filter:blur(50px);
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.5);
     animation: animate 5s ease-in-out infinite;
@@ -246,11 +252,11 @@ function dateBackHandle() {
 }
 
 .back .minute {
-    animation: back 3s;
+    animation: back 4s;
 }
 
 .back .second {
-    animation: back 1s;
+    animation: back 2s;
 }
 
 @keyframes back {

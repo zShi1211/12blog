@@ -1,7 +1,7 @@
 import { addComment } from "@/api/comment";
 import { addSubComment } from "@/api/subComment";
 import { ref, type Ref } from "vue";
-import type { IAritcleData } from "../article/usearticleListData";
+import type { IAritcleData } from "../article/useArticleListData";
 
 interface IUserCommentInfo {
     nickname: string;

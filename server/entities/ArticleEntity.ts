@@ -27,15 +27,15 @@ export default class ArticleEntity extends BaseEntity implements ArticleType {
 
 
     @Type(() => Number)
-    declare words: string;
+    words: string;
 
 
     @IsNotEmpty()
     @Type(() => String)
-    declare description: string;
+    cover: string;
 
     @Type(() => Boolean)
-    declare ispublish: boolean;
+    ispublish: boolean;
 
     @IsNotEmpty()
     @Type(() => String)

@@ -7,18 +7,14 @@ export function getOneArticle(id: string) {
 
 // 分页获取多篇文章
 export interface ISeartchCondition {
-    page?: number;
+    offest?: number;
     limit?: number;
-    sort?: "DESC" | "ASC";
-    key?: string;
 }
 export function getAllArticle({
-    page = 1,
+    offest = 1,
     limit = 5,
-    key = "",
-    sort = "DESC"
 }: ISeartchCondition) {
-    return axios.get(`/article?page=${page}&limit=${limit}&key=${key}&sort=${sort}`);
+    return axios.get(`/article/public?offest=${offest}&limit=${limit}`);
 }
 
 export function likeArticle(id: string, like: number) {

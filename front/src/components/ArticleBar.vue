@@ -2,6 +2,7 @@
 <script setup lang='ts'>
 import useAudio from "@/composition/topBar/useAudio"
 import useScrollDirection from "@/composition/topBar/useScrollDirection";
+import Section from "./Section.vue";
 import ThemeSwitchVue from "./ThemeSwitch.vue";
 const { audioState, play, puase } = useAudio();
 const { direction, topNear } = useScrollDirection();
@@ -53,26 +54,30 @@ function goTop() {
 
 
         <div class="bottomBar" v-else>
-            <p class="title">{{ articleName }}</p>
-            <div class="operate">
+            <Section>
+                <div class="bottomBarBox">
+                    <p class="title">{{ articleName }}</p>
+                    <div class="operate">
 
-                <div class="comment">
-                    <i class="iconfont icon-pinglun" @click="goCommentText"></i>
-                </div>
+                        <div class="comment">
+                            <i class="iconfont icon-pinglun" @click="goCommentText"></i>
+                        </div>
 
-                <div class="upThumb" :class="{ like: isLike }">
-                    <i class="iconfont icon-aixin" @click="upThumbHandle"></i>
-                </div>
-                <div class="play">
-                    <i class="iconfont icon-24gf-play" v-if="!audioState.isPlay" @click="play"></i>
-                    <i class="iconfont icon-24gf-pause2" v-else @click="puase"></i>
-                </div>
-                <ThemeSwitchVue />
+                        <div class="upThumb" :class="{ like: isLike }">
+                            <i class="iconfont icon-aixin" @click="upThumbHandle"></i>
+                        </div>
+                        <div class="play">
+                            <i class="iconfont icon-24gf-play" v-if="!audioState.isPlay" @click="play"></i>
+                            <i class="iconfont icon-24gf-pause2" v-else @click="puase"></i>
+                        </div>
+                        <ThemeSwitchVue />
 
-                <div class="goTop">
-                    <i class="iconfont icon-dingbu" @click="goTop"></i>
+                        <div class="goTop">
+                            <i class="iconfont icon-dingbu" @click="goTop"></i>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </Section>
         </div>
     </Transition>
 </template>
@@ -82,10 +87,12 @@ function goTop() {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
     font-size: 20px;
     z-index: 1000;
     backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     box-shadow: 0px -3px 10px #ccc;
 }
 
@@ -113,7 +120,7 @@ function goTop() {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .topBar .nav .title.topNear {
@@ -129,6 +136,7 @@ function goTop() {
     display: flex;
     /* color: #fff; */
 }
+
 
 .topBar .upThumb {
     margin: 0 15px;
@@ -157,19 +165,35 @@ function goTop() {
     height: 50px;
     font-size: 20px;
     z-index: 1000;
+    display: flex;
     box-shadow: 0px 3px 10px #ccc;
+}
+
+.bottomBarBox {
     display: flex;
     align-items: center;
-    padding: 0 20%;
-    box-sizing: border-box;
+    height: 100%;
+    justify-content: space-between;
 }
+
 
 .bottomBar .operate {
     color: #888;
 }
 
+@media (max-width: 576px) {
+    .bottomBarBox .title {
+        display: none;
+    }
+
+    .bottomBar .operate {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
 .bottomBar .title {
-    flex-grow: 1;
     text-align: left;
     font-size: 16px;
     color: #456;
@@ -177,7 +201,7 @@ function goTop() {
 }
 
 .bottomBar .operate>div {
-    margin-left: 20px;
+    padding: 10px;
 }
 
 .bar-enter-active,

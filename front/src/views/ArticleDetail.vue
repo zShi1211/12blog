@@ -10,6 +10,7 @@ import CommentList from '@/components/CommentList.vue';
 import usePublishComment from '@/composition/commentList/usePublishComment';
 import useTouchBottomLoad from '@/composition/utils/useTouchBottomLoad';
 import SpinTwoBalls from '@/components/Loading/SpinTwoBalls.vue';
+import Section from '@/components/Section.vue';
 // 获取文章数据
 const route = useRoute();
 const { articleDate } = useArticleDetailData(route.params.id as string)
@@ -96,32 +97,33 @@ function onTouchBottomHandle() {
 </script>
 
 <template>
-
     <div class="articleWrapper" v-if="articleDate">
-        <ArticleBar :upThumbHandle="upThumbHandle" :isLike="isLike" :goCommentText="goCommentText"
-            :articleName="articleDate.title" />
-        <h1 class="title">{{ articleDate?.title }}</h1>
-        <div class="infomation">
-            <p>{{ $dateFormat(new Date(articleDate?.time!)) }}</p>
-            <p>字数 {{ articleDate?.words }}</p>
-            <p>喜欢 {{ articleDate?.like }} </p>
-        </div>
-        <div class="content">
-            <div v-html="articleDate?.content" id="md-editor-rt-preview" class="md-preview default-theme">
+        <Section>
+            <ArticleBar :upThumbHandle="upThumbHandle" :isLike="isLike" :goCommentText="goCommentText"
+                :articleName="articleDate.title" />
+            <h1 class="title">{{ articleDate?.title }}</h1>
+            <div class="infomation">
+                <p>{{ $dateFormat(new Date(articleDate?.time!)) }}</p>
+                <p>字数 {{ articleDate?.words }}</p>
+                <p>喜欢 {{ articleDate?.like }} </p>
             </div>
-        </div>
-        <div class="commentText" ref="commentText">
-            <CommentAreatext :onEmit="onPublishCommentHandle" :isReply="isReply" :cancelReply="() => {
-                isReply = false;
-            }" :replyName="replySubInfo?.nickname" />
-        </div>
-        <div class="commentList" v-if="totalComment.count > 0">
-            <CommentList :totalComment="totalComment" :onReplyHandle="onReplyHandle" />
-            <div class="loadBottom">
-                <SpinTwoBalls v-show="loading && !isCommentLoadDone" />
-                <p v-if="isCommentLoadDone">已经加载全部内容啦~</p>
+            <div class="content">
+                <div v-html="articleDate?.content" id="md-editor-rt-preview" class="md-preview default-theme">
+                </div>
             </div>
-        </div>
+            <div class="commentText" ref="commentText">
+                <CommentAreatext :onEmit="onPublishCommentHandle" :isReply="isReply" :cancelReply="() => {
+                    isReply = false;
+                }" :replyName="replySubInfo?.nickname" />
+            </div>
+            <div class="commentList" v-if="totalComment.count > 0">
+                <CommentList :totalComment="totalComment" :onReplyHandle="onReplyHandle" />
+                <div class="loadBottom">
+                    <SpinTwoBalls v-show="loading && !isCommentLoadDone" />
+                    <p v-if="isCommentLoadDone">已经加载全部内容啦~</p>
+                </div>
+            </div>
+        </Section>
 
     </div>
 </template>
@@ -130,9 +132,16 @@ function onTouchBottomHandle() {
 </style>
 <style  scoped>
 .articleWrapper {
-    width: 60%;
-    margin: 0 auto;
     padding: 100px 0;
+}
+
+.aaa {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #f58220;
 }
 
 .title {
@@ -152,6 +161,7 @@ function onTouchBottomHandle() {
 
 .content {
     overflow: hidden;
+     padding: 50px 0 50px;
 }
 
 .infomation::after {
@@ -169,10 +179,6 @@ function onTouchBottomHandle() {
 
 .infomation p {
     margin-right: 10px;
-}
-
-.content {
-    padding: 80px 0 50px;
 }
 
 .loadBottom {

@@ -8,20 +8,21 @@ import "css-doodle";
         <h1 class="title">SayHi.</h1>
         <div class="box">
             <div class="left">
-                <p class="email">
+                <p class="email item">
                     <a href="mailto:zshi1211@qq.com">
-                    2459924732@qq.com
+                        2459924732@qq.com
                     </a>
                 </p>
-                <p class="decor"></p>
-                <div class="introduction">
-                  <p>我程序员小白一位</p>
-                  <p>喜欢emmm...</p>
-                  <p>这个问题好像自己也不知道</p>
-                  <p>但有时莫名感到快乐</p>
+                <p class="decor item"></p>
+                <div class="introduction item">
+                    <p>😳以为有一段自我介绍吗</p>
+                    <p>😢不好意思什么都没有</p>
+                    <p>😂因为我想不出来</p>
+                    <p>🤔为了看起来不太单调</p>
+                    <p>😊那就祝你有愉快的一天</p>
                 </div>
-                <p class="name">
-                    bangban12
+                <p class="name item">
+                    12
                 </p>
                 <p class="links">
                     <a href="">
@@ -29,7 +30,7 @@ import "css-doodle";
                     </a>
                 </p>
             </div>
-            <div class="right">
+            <div class="right" >
                 <css-doodle>
                     --color: @p(#51eaea, #fffde1, #ff9d76, #FB3569); :doodle { @grid:
                     30x1 / 18vmin; --deg: @p(-180deg, 180deg); } :container {
@@ -77,14 +78,13 @@ import "css-doodle";
     width: 100%;
     flex-grow: 1;
     display: flex;
-    flex-direction: column;
 }
-
 
 .left,
-.right {
+.right{
     width: 100%;
 }
+
 
 .right {
     display: flex;
@@ -99,38 +99,57 @@ import "css-doodle";
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    color:#fff;
+    justify-content: space-between;
+    color: #fff;
 }
 
-.email{
+.email {
     font-size: 50px;
-    word-break:break-word;
-    margin-bottom: 50px;
+    word-break: break-word;
 }
 
-.introduction{
-    flex-grow: 1;
-    margin-bottom: 50px;
+.introduction {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-basis: 100px;
 }
-.decor{
+
+
+
+
+.introduction p {
+    padding: 10px 0;
+}
+
+@media (max-width: 576px) {
+    .title {
+        font-size: 100px;
+    }
+    .box {
+        flex-direction: column;
+    }
+
+    .email {
+        font-size: 30px;
+    }
+
+    .introduction p {
+        padding: 5px 0;
+    }
+    .box .left .item{
+        margin-bottom: 15px;
+    }
+}
+
+.decor {
     height: 3px;
     width: 100px;
-    background:#fff;
-    margin-bottom: 50px;
+    background: #fff;
 }
 
 
-.name{
-    margin-bottom: 50px;
 
-}
-
-.links a{
+.links a {
     display: inline-block;
     font-size: 35px;
 }

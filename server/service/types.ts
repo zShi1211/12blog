@@ -1,7 +1,7 @@
 import { AdminType } from "../model/types";
 
 export interface ISeartchCondition {
-    page?: number;
+    offest?: number;
     limit?: number;
     sort?: "DESC" | "ASC";
     key?: string;

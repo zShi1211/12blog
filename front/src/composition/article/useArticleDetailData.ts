@@ -1,6 +1,6 @@
 import { getOneArticle } from "@/api/article";
 import { onMounted, ref } from "vue";
-import type { IAritcleData } from "./usearticleListData";
+import type { IAritcleData } from "./useArticleListData";
 
 export default function useArticleDetailData(id: string) {
     const articleDate = ref<IAritcleData>();

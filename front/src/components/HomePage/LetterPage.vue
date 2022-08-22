@@ -115,20 +115,29 @@ async function onSubmitHandle() {
     align-items: end;
 }
 
-.emit-leave-active {
+
+.emit-leave-to {
     animation: emitting 2s infinite;
-    will-change: animation;
+    /* will-change: animation; */
 }
 
+.emit-leave-active-to{
+    opacity: 0;
+}
+
+.emit-enter-from {
+    opacity: 0;
+    transform: scale(0.8);
+}
 
 .emit-enter-active {
-    opacity: 0;
     transition: all 1s;
-    will-change: transform;
+    /* will-change: transform; */
 }
 
 .emit-enter-to {
     opacity: 1;
+    transform: scale(1);
 
 }
 
@@ -157,7 +166,7 @@ async function onSubmitHandle() {
 .box.emitting .form {
     transform: translateY(50%);
     transition: all 2.4s;
-    will-change: transform;
+    /* will-change: transform; */
 }
 
 
@@ -220,12 +229,27 @@ async function onSubmitHandle() {
     flex-grow: 1;
 }
 
+
 .form .item .info {
     flex-grow: 1;
 }
 
 .form .item .info p {
     padding: 10px 0;
+}
+
+@media (max-width: 576px) {
+    .box {
+        width: 95%;
+    }
+
+    .form .item.content {
+        flex-direction: column;
+    }
+
+    .form .item .info {
+        width: 100%;
+    }
 }
 
 .form .item.content .avatar {
@@ -265,6 +289,7 @@ async function onSubmitHandle() {
     width: 100%;
     box-sizing: border-box;
     outline: none;
+    font-size: 16px;
 }
 
 .form .item.content textarea {
@@ -278,6 +303,7 @@ async function onSubmitHandle() {
     flex-grow: 1;
     outline: none;
     resize: none;
+    font-size: 16px;
 }
 
 .err {
@@ -314,5 +340,6 @@ async function onSubmitHandle() {
     align-items: center;
     font-size: 12px;
     color: #a3bcd5;
+    padding: 5px 0;
 }
 </style>

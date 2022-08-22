@@ -1,12 +1,12 @@
 import { getAllArticle } from "@/api/article";
-import { ref, watchEffect } from "vue";
+import { reactive, ref, watchEffect } from "vue";
 
 export interface IAritcleData {
     id: number;
     title: string;
     content: string;
     time: number;
-    description: string;
+    cover: string;
     ispublish: boolean;
     mdString: string;
     like: number;
@@ -18,21 +18,25 @@ interface ITotalArticle {
 }
 
 export default function useArticleListData() {
-    const searchConditon = ref({
-        page: 1,
-        limit: 5
+    const searchConditon = reactive({
+        offest: 1,
+        limit: 8
     });
-    const articlesList = ref<ITotalArticle>({
+    const totalArticlesList = reactive<ITotalArticle>({
         count: 0,
         rows: []
     });
+    const loading = ref(false)
     watchEffect(async () => {
-        const res = (await getAllArticle(searchConditon.value)).data as any;
-        articlesList.value.count = res.count;
-        articlesList.value.rows.push(...res.rows);
+        loading.value = true;
+        const res = (await getAllArticle(searchConditon)).data as any;
+        totalArticlesList.count = res.count;
+        totalArticlesList.rows.push(...res.rows);
+        loading.value = false;
     })
     return {
         searchConditon,
-        articlesList
+        totalArticlesList,
+        loading
     }
 }

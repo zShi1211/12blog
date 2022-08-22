@@ -1,6 +1,6 @@
 import { likeArticle } from "@/api/article";
 import { computed, type Ref } from "vue";
-import type { IAritcleData } from "./usearticleListData";
+import type { IAritcleData } from "./useArticleListData";
 import useLikeArticles from "./useLikeArticles";
 
 export default function useThumbArticle(articleDate: Ref<IAritcleData | undefined>) {

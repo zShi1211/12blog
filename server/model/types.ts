@@ -20,7 +20,7 @@ export interface ArticleType {
     time: number;
     like: number;
     words: string;
-    description: string;
+    cover: string;
     ispublish?: boolean;
     mdString: string;
 }

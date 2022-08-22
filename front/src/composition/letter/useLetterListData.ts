@@ -16,7 +16,7 @@ interface ITotalLetter {
 export default function useLetterListData() {
     const searchConditon = reactive({
         offest: 1,
-        limit: 5
+        limit: 8
     });
     const totalLetter = reactive<ITotalLetter>({
         count: 0,

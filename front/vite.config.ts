@@ -22,6 +22,7 @@ export default defineConfig({
         target: 'http://localhost:1111',
         changeOrigin: true,
       },
-    }
+    },
+    host:"192.168.31.150"
   }
 })

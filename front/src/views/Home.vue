@@ -33,7 +33,6 @@ import SayHi from './SayHi.vue';
 .container {
     position: relative;
     height: 100vh;
-    scroll-snap-type: y mandatory;
     overflow-x: hidden;
 }
 
@@ -44,7 +43,19 @@ import SayHi from './SayHi.vue';
     position: relative;
     margin-top: calc(calc(var(--i) - 1) * -100vh);
     z-index: calc(calc(var(--i) * -1) + 10);
-    scroll-snap-align: end;
+}
+
+@media (max-width: 576px) {
+    .container {
+        scroll-snap-type: y mandatory;
+    }
+
+    .section {
+        height: 100vh;
+        z-index: 0;
+        margin-top: 0;
+        scroll-snap-align: end;
+    }
 }
 
 .wrapper {
@@ -54,7 +65,4 @@ import SayHi from './SayHi.vue';
     top: 0;
     overflow: hidden;
 }
-
-
-
 </style>

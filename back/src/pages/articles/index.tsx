@@ -1,5 +1,5 @@
 import { getAllArticle, ISeartchCondition, rmArticle, updateArticle } from '@/api/article';
-import { Space, Table, Tag, Button, Popconfirm, Input, message, Switch, Empty } from 'antd';
+import { Space, Table, Tag, Button, Popconfirm, Input, message, Switch, Empty,Image } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
@@ -17,7 +17,7 @@ interface IProps {
 interface IAritcle {
     id: number;
     title: string;
-    description: string;
+    cover: string;
     like: number,
     words: number
     time: number;
@@ -28,7 +28,7 @@ interface DataType {
     key: number
     id: number;
     title: string;
-    description: string;
+    cover: string;
     tag: {
         like: number,
         words: number
@@ -70,12 +70,12 @@ const Aritcle: React.FC<IProps> = () => {
 
 
 
-    const data: DataType[] = articleData.articles.map(({ id, title, description, time, like, words, ispublish }, index) => {
+    const data: DataType[] = articleData.articles.map(({ id, title, cover, time, like, words, ispublish }, index) => {
         return {
             key: index,
             id,
             title,
-            description,
+            cover,
             time,
             tag: {
                 like, words
@@ -93,9 +93,17 @@ const Aritcle: React.FC<IProps> = () => {
         },
         {
             title: '描述',
-            dataIndex: 'description',
-            key: "description",
-            width: 400
+            dataIndex: 'cover',
+            key: "cover",
+            width: 200,
+            render: cover => {
+                return (
+                    <Image
+                        width={200}
+                        src={cover}
+                    />
+                )
+            }
         },
         {
             title: '发布时间',

@@ -1,7 +1,7 @@
 import { getAllComment } from "@/api/comment";
 import delay from "@/utils/delay";
 import { ref, watchEffect, type Ref } from "vue";
-import type { IAritcleData } from "../article/usearticleListData";
+import type { IAritcleData } from "../article/useArticleListData";
 
 interface IComment {
     id?: number;

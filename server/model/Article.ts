@@ -10,7 +10,7 @@ export default class Article extends Model<InferAttributes<Article>, InferCreati
     time: number;
     like: number;
     words: string;
-    description: string;
+    cover: string;
     ispublish?: boolean;
     mdString: string;
 }
@@ -51,8 +51,8 @@ Article.init({
         allowNull: false,
         defaultValue: 0
     },
-    description: {
-        type: DataTypes.TEXT,
+    cover: {
+        type: DataTypes.STRING,
         allowNull: true,
     },
     ispublish: {

@@ -1,16 +1,15 @@
 import ArticleEntity from "../entities/ArticleEntity";
 import Article from "../model/Article";
-import { ISeartchCondition } from "./types";
+import { IPagingCondition, ISeartchCondition } from "./types";
 import { Op } from 'sequelize'
 import parserValidate from "./utils/parserValidateErr";
 
 export default class ArticleService {
     static async add(aritle: object) {
         const a = ArticleEntity.transform(aritle);
-        console.log(a)
         const res = await a.validate();
         if (res) throw parserValidate(res);
-
+        console.log(a)
         return (await Article.create(a)).toJSON();
     }
 
@@ -34,11 +33,10 @@ export default class ArticleService {
 
     static async findAll({
         key = '',
-        page = 1,
-        limit = 2,
+        offest = 1,
+        limit = 5,
         sort = "DESC"
     }: ISeartchCondition) {
-        console.log(key, page, limit, sort)
         const res = await Article.findAndCountAll({
             where: {
                 title: {
@@ -47,10 +45,28 @@ export default class ArticleService {
             },
             order: [["time", sort]],
             limit: +limit,
-            offset: (page - 1) * limit,
+            offset: (offest - 1) * limit,
         })
+        res.rows = res.rows.map(data => data.toJSON());
+        return res;
+    }
 
+
+    static async findPublicAll({
+        offest = 1,
+        limit = 5,
+    }: IPagingCondition) {
+        const res = await Article.findAndCountAll({
+            where: {
+                ispublish: true
+            },
+            limit: +limit,
+            offset: (offest - 1) * limit,
+            order: [["time", "desc"]],
+        })
         res.rows = res.rows.map(data => data.toJSON());
         return res;
     }
 }
+
+

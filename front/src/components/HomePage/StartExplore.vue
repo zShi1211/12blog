@@ -6,10 +6,14 @@ const scrollY = ref(0)
 
 const themeStore = useThemeStore();
 
+// 当屏幕宽度小于576时，就不让月亮动了，因为在手机端动画会抖动
+const clienWidth = ref(0);
+
 onMounted(() => {
     document.querySelector('.container')?.addEventListener('scroll', (e: any) => {
         scrollY.value = e.target.scrollTop
     })
+    clienWidth.value = document.documentElement.clientWidth;
 })
 </script>
 
@@ -20,15 +24,15 @@ onMounted(() => {
                 <div v-if="themeStore.theme === 'light'" class="imgs">
                     <img src="@/assets/img/stars.png" alt="" :style="{ transform: `translateX(${scrollY * 0.2}px)` }" />
                     <img src="@/assets/img/moon.png" alt="" class="moon"
-                        :style="{ transform: `translateY(${scrollY * 0.8}px)` }">
+                        :style="{ transform: clienWidth > 576 ? `translateY(${scrollY * 0.8}px)` : '0px' }">
                     <img src="@/assets/img/mountains_behind.png" alt=""
-                        :style="{ transform: `translateY(${scrollY * 0.3}px)` }">
-                    <img src="@/assets/img/mountains_front.png" alt=""
-                        :style="{ transform: `translateY(${scrollY * 0.1}px)` }">
+                        :style="{ transform: `translateY(${scrollY * 0.4}px)` }">
+                    <img src="@/assets/img/mountains_front.png" alt="">
                 </div>
                 <div v-else class="imgs">
-                    <img src="@/assets/img/sun.png" alt="" class="sun">
-                    <img src="@/assets/img/1.png" alt="">
+                    <img src="@/assets/img/sun.png" alt="" class="sun"
+                        :style="{ transform: clienWidth > 576 ? `translateY(${scrollY * 0.8}px)` : '0px' }">
+                    <img src="@/assets/img/1.png" alt="" :style="{ transform: `translateY(${scrollY * 0.4}px)` }">
                     <img src="@/assets/img/2.png" alt="">
                 </div>
             </Transition>
@@ -64,6 +68,12 @@ onMounted(() => {
      box-sizing: border-box;
      top: 0;
      font-size: 25px;
+ }
+ 
+ @media (max-width: 992px) {
+     nav {
+         padding: 20px;
+     }
  }
  
  nav .iconfont {
@@ -102,10 +112,10 @@ onMounted(() => {
      will-change: transform;
  }
  
- .moon,
+ img.moon,
  .sun {
      mix-blend-mode: screen;
- }
+     will-change: mix-blend-mode;
  
-
+ }
  </style>

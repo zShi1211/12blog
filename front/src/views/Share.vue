@@ -1,9 +1,10 @@
 <script setup lang='ts'>
-import SpinTwoBallsVue from '@/components/Loading/SpinTwoBalls.vue';
+import SpinTwoBalls from '@/components/Loading/SpinTwoBalls.vue';
 import useShareListData from '@/composition/share/useShareListData';
 import { computed } from '@vue/reactivity';
 import { watch } from 'vue'
 import { ref } from 'vue';
+import Operation from '@/components/Operation.vue';
 const { totalShare, searchConditon, loading } = useShareListData()
 
 const currentPage = ref(0);
@@ -37,67 +38,104 @@ function changePageHandle(newPage: number) {
 </script>
 
 <template>
-    <div class="ShareWrapper" v-if="totalShare.count > 0">
-        <div class="book "
-            :class="{ open: currentPage > 0 && currentPage < totalShare.count + 2, done: currentPage > totalShare.count + 1 }">
-            <div class="frontCover bookItem " :class="{ pass: currentPage > 0 }"
-                :style="{ '--p': totalShare.count + 2 }">
-            </div>
-            <div class="pageItem bookItem" v-for="(share, index) in totalShare.rows" :key="share.id"
-                :class="{ pass: currentPage > index + 1 }"
-                :style="{ '--p': totalShare.count - index + (currentPage > index + 1 ? index + 2 : 1) }">
-                <div class="content">
-                    <p class="time">{{ $dateFormat(new Date(share.time)) }}</p>
-                    <div class="picture">
-                        <img :src="share.pictureUrl" alt="">
-                    </div>
-                    <div class="description">
-                        {{ share.description }}
+    <div class="shareWrapper" v-if="totalShare.count > 0">
+        <div class="shareBox">
+            <div class="book "
+                :class="{ open: currentPage > 0 && currentPage < totalShare.count + 2, done: currentPage > totalShare.count + 1 }">
+                <div class="frontCover bookItem " :class="{ pass: currentPage > 0 }"
+                    :style="{ 'z-index': totalShare.count + 2 }">
+                </div>
+                <div class="pageItem bookItem" v-for="(share, index) in totalShare.rows" :key="share.id"
+                    :class="{ pass: currentPage > index + 1 }"
+                    :style="{ 'z-index': totalShare.count - index + (currentPage > index + 1 ? index * 2 + 2 : 1) }">
+                    <div class="content">
+                        <div class="top">
+                            <p class="pageIndex">{{ index + 1 }}</p>
+                            <p class="time">{{ $dateFormat(new Date(share.time)) }}</p>
+                        </div>
+                        <div class="picture">
+                            <img :src="share.pictureUrl" alt="">
+                        </div>
+                        <div class="description">
+                            {{ share.description }}
+                        </div>
                     </div>
                 </div>
+                <SpinTwoBalls :style="{ position: 'absolute', zIndex: 1 }" v-if="loading && !isShareLoadDone" />
+                <div class="backCover bookItem"
+                    :style="{ 'z-index': 0 + (currentPage > totalShare.count + 1 ? totalShare.count * 2 + 2 : 0) }"
+                    :class="{ pass: currentPage > totalShare.count + 1 }"></div>
             </div>
-            <SpinTwoBallsVue :style="{ position: 'absolute', zIndex: 1 }" v-if="loading && !isShareLoadDone" />
-            <div class="backCover bookItem"
-                :style="{ '--p': 0 + (currentPage > totalShare.count + 1 ? totalShare.count + 2 : 0) }"
-                :class="{ pass: currentPage > totalShare.count + 1 }"></div>
+            <div class="operate">
+                <button :disabled="currentPage === 0"
+                    @click="changePageHandle(currentPage - 1)">Prev</button>
+                <button :disabled="currentPage === totalShare.count + 2"
+                    @click="changePageHandle(currentPage + 1)">Next</button>
+            </div>
         </div>
-        <div class="operate">
-            <button @click="changePageHandle(currentPage - 1)">Prev</button>
-            <button @click="changePageHandle(currentPage + 1)">Next</button>
-        </div>
+        <Operation :exclude="['goTop']" />
     </div>
 </template>
 
 <style  scoped>
 @import 'viewerjs/dist/viewer.css';
 
-.ShareWrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin: 0 auto;
+
+.shareWrapper {
     overflow: hidden;
     height: 100vh;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 
 img {
     width: 100%;
 }
 
+.shareBox {
+    width: 500px;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .shareBox {
+        width: 410px;
+    }
+}
+
+@media (max-width: 850px) {
+    .shareBox {
+        width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .shareBox {
+        width: 300px;
+    }
+}
+
+
 .book {
     position: relative;
-    height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
     transform-style: preserve-3d;
     transition: all 1.5s;
-    width: 500px;
     color: #123;
+    width: 100%;
+    height: 100%;
 }
+
+
 
 .book.open {
     transform: translateX(50%);
@@ -107,11 +145,24 @@ img {
     transform: translateX(100%);
 }
 
+@media (max-width: 576px) {
+    .shareBox {
+        width: 95%;
+    }
+
+    .book.open {
+        transform: translateX(0px);
+    }
+
+    .book.done {
+        transform: translateX(100%);
+    }
+}
+
 .bookItem {
     position: absolute;
-    z-index: var(--p);
+    /* z-index: var(--p); */
     transition: all 1.5s;
-    will-change: transform;
 }
 
 .frontCover,
@@ -139,9 +190,7 @@ img {
     height: 90%;
     width: 90%;
     box-sizing: border-box;
-    /* background: #456; */
     background: url("@/assets/img/letter_bg.png");
-
 }
 
 
@@ -161,6 +210,18 @@ img {
     transition: all 0.6s;
 }
 
+.top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 10px;
+
+}
+
+.time {
+    opacity: 0.6;
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -168,12 +229,7 @@ img {
     height: 100%;
 }
 
-.time {
-    font-size: 12px;
-    margin-bottom: 10px;
-    text-align: right;
-    opacity: 0.6;
-}
+
 
 .picture {
     flex-grow: 1;
@@ -193,10 +249,11 @@ img {
     max-height: 120px;
     overflow-y: auto;
     line-height: 1.4;
+    letter-spacing: 1px;
 }
 
 .operate {
-    width: 500px;
+    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 20px;

@@ -1,9 +1,10 @@
 <script setup lang='ts'>
-import { getAllLetter } from '@/api/letter';
 import useLetterListData from '@/composition/letter/useLetterListData';
 import useTouchBottomLoad from '@/composition/utils/useTouchBottomLoad';
-import { computed, watchEffect } from 'vue';
+import { computed } from 'vue';
 import SpinTwoBalls from '@/components/Loading/SpinTwoBalls.vue';
+import Operation from '@/components/Operation.vue';
+import Section from '@/components/Section.vue';
 const { searchConditon, totalLetter, loading } = useLetterListData();
 const isLetterLoadDone = computed(() => {
     return totalLetter.count <= totalLetter.rows.length
@@ -19,34 +20,35 @@ function touchBottomHandle() {
 </script>
 
 <template>
-    <div class="letterWrapper">
-        <div class="letterItem" v-for="letter in totalLetter.rows" :key="letter.id">
-            <div class="avatar">
-                <img :src="letter.avatar" alt="">
-            </div>
-            <div class="content">
-                <div class="box">
-                    {{ letter.content }}
+    <div class="letterWrapper" v-if="totalLetter.count">
+        <Section>
+            <div class="letterItem" v-for="letter in totalLetter.rows" :key="letter.id">
+                <div class="avatar">
+                    <img :src="letter.avatar" alt="">
+                </div>
+                <div class="content">
+                    <div class="box">
+                        {{ letter.content }}
+                    </div>
+                </div>
+                <div class="nickname">
+                    {{ letter.nickname }}
+                </div>
+                <div class="time">
+                    {{ $dateFormat(new Date(letter.time)) }}
                 </div>
             </div>
-            <div class="nickname">
-                {{ letter.nickname }}
+            <div class="loadBottom">
+                <SpinTwoBalls v-show="loading && !isLetterLoadDone" />
+                <p v-if="isLetterLoadDone">已经加载全部内容啦~</p>
             </div>
-            <div class="time">
-                {{ $dateFormat(new Date(letter.time)) }}
-            </div>
-        </div>
-        <div class="loadBottom">
-            <SpinTwoBalls v-show="loading && !isLetterLoadDone" />
-            <p v-if="isLetterLoadDone">已经加载全部内容啦~</p>
-        </div>
+        </Section>
+        <Operation />
     </div>
 </template>
 
 <style  scoped>
 .letterWrapper {
-    width: 600px;
-    margin: 0 auto;
     padding: 20px 0;
 }
 

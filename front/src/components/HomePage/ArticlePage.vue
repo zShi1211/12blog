@@ -5,29 +5,31 @@ import LeapBallsVue from '../Loading/LeapBalls.vue';
 
 <template>
     <div class="articlePageWrapper">
-        <div class="box">
+        <div class="articleBox">
             <h1 class="title">Blog.</h1>
-            <router-link to="/articles" class="content">
+            <div class="content">
+            <div class="animation">
+                <LeapBallsVue />
+            </div>
+            <div class="description">
+                <p>一点点胡言乱语...</p>
+            </div>
+            <router-link to="/articles" >
                 <div class="detail">
-                    detail
-                </div>
-                <div class="animation">
-                    <LeapBallsVue />
-                </div>
-                <div class="description">
-                    <p>一点点胡言乱语...</p>
+                    查看详细
                 </div>
             </router-link>
-        </div>
+        </div></div>
     </div>
 </template>
 
 <style  scoped>
-.articlePageWrapper{
+.articlePageWrapper {
     height: 100%;
     background: #361f3b;
 
 }
+
 .title {
     font-size: 120px;
     font-weight: 800;
@@ -39,9 +41,7 @@ import LeapBallsVue from '../Loading/LeapBalls.vue';
     color: #fff;
 }
 
-
-
-.box {
+.articleBox {
     padding: 0 10% 0;
     box-sizing: border-box;
     display: flex;
@@ -61,20 +61,16 @@ import LeapBallsVue from '../Loading/LeapBalls.vue';
     position: relative;
     overflow: hidden;
     background: #3d4d5e;
+    align-items: center;
 }
 
 .detail {
     width: 110px;
     height: 60px;
-    position: absolute;
-    top: 0;
-    right: 50px;
     background: #000;
     text-align: center;
     line-height: 60px;
     color: #fff;
-    transform: translateY(-100%);
-    transition: all 0.4s;
 }
 
 
@@ -90,9 +86,6 @@ import LeapBallsVue from '../Loading/LeapBalls.vue';
     padding-bottom: 15px;
 }
 
-.content:hover .detail {
-    transform: translateY(0);
-}
 
 
 .content:hover .animation {
@@ -101,6 +94,5 @@ import LeapBallsVue from '../Loading/LeapBalls.vue';
 
 .content:hover .description {
     transform: translateY(10px);
-    /* line-height: 1.6; */
 }
 </style>

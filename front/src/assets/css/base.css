@@ -1,15 +1,33 @@
-@import "//at.alicdn.com/t/c/font_3580920_988v12iyxsw.css";
+@import "//at.alicdn.com/t/c/font_3580920_50fs02j8xrk.css";
 
-::-webkit-scrollbar {
+
+
+
+@media (min-width: 576px) {
+    ::-webkit-scrollbar {
+        width: 7px;
+        background: transparent;
+    }
+  }
+
+/* ::-webkit-scrollbar {
     width: 7px;
     background: transparent;
-}
+} */
 
 ::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 15px;
 }
 
+#app{
+    overflow-x: hidden;
+}
+
 .iconfont {
     font-size: inherit;
 }
+
+@custom-media --large-viewport (max-width: 992px);
+@custom-media --middle-viewport (max-width: 768px);
+@custom-media --small-viewport (max-width: 576px);

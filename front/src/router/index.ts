@@ -22,8 +22,18 @@ const router = createRouter({
     {
       path: "/letters",
       component: import("@/views/Letters.vue"),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      component: () => import('@/views/404.vue'),
     }
   ]
+})
+
+router.afterEach((to, from) => {
+  const toDepth = to.path.split('/').filter(i=>i!=="").length
+  const fromDepth = from.path.split('/').filter(i=>i!=="").length
+  to.meta.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
 })
 
 export default router

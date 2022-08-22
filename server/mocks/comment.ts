@@ -9,7 +9,6 @@ import "../model/relation"
 
 const data = mockjs.mock({
     "datas|15": [{
-        "id|+1": 1,
         nickname: "user@id",
         content: '@cparagraph(20,50)',
         time: '@date("yyyy-MM-dd")',
