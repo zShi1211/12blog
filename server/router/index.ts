@@ -29,7 +29,7 @@ app.use(async (ctx, next) => {
         }
     }
 })
-
+console.log()
 // 静态资源托管
 app.use(koaStatic(path.resolve(__dirname, "../public")));
 

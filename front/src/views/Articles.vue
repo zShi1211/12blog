@@ -1,8 +1,11 @@
 <script setup lang='ts'>
 import Section from '@/components/Section.vue';
 import useArticleListData from '@/composition/article/useArticleListData';
-import useTouchBottomLoad from '@/composition/utils/useTouchBottomLoad';
+import useTouchBottomLoad from '@/composition/common/useTouchBottomLoad';
 import { computed } from 'vue';
+import Operation from '@/components/Operation.vue';
+import loadingSvg from '@/assets/img/loading.svg';
+import FullScreenLoading from '@/components/Loading/FullScreenLoading.vue';
 const { searchConditon, totalArticlesList, loading } = useArticleListData();
 const isLetterLoadDone = computed(() => {
     return totalArticlesList.count <= totalArticlesList.rows.length
@@ -24,9 +27,9 @@ function touchBottomHandle() {
                 :key="article.id">
                 <div class="articleItem">
                     <div class="cover">
-                        <img :src="article.cover" alt="">
+                        <img :key="article.cover" v-lazy="{ src: article.cover, loading: loadingSvg }">
                     </div>
-                    <div class="content">
+                    <div class=" content">
                         <p class="title">
                             {{ article.title }}
                         </p>
@@ -42,7 +45,9 @@ function touchBottomHandle() {
                 <p v-if="isLetterLoadDone">已经加载全部内容啦~</p>
             </div>
         </Section>
+        <Operation />
     </div>
+    <FullScreenLoading v-else />
 </template>
 
 <style  scoped>

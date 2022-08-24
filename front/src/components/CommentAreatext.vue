@@ -64,7 +64,7 @@ async function onSubmitHandle() {
             </p>
         </div>
         <div class="mid">
-            <textarea v-model="commContent" class="content" :placeholder="isReply ? `@${replyName}` : '写点什么吧'"
+            <textarea v-model="commContent" class="content" :placeholder="isReply ? `@${replyName}` : ''"
                 rows="10"></textarea>
         </div>
         <div class="bottom">

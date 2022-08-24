@@ -1,27 +1,59 @@
 @import "//at.alicdn.com/t/c/font_3580920_50fs02j8xrk.css";
 
+:root.light {
+    --color1: rgb(232, 199, 16);
+    --color2: #000;
+    --color3: #4c2a00;
+    --color4: #e4ae1f;
+    --color6: #fff;
+    --color7: #8acada;
+    --color8: #fdeac9;
+    --color9: #cbebf4;
+    --color10: #f18696;
+    --color11: #bcd4e6;
+    --color12: #fff;
+    --color13: #567;
+    --color14: rgb(241, 236, 236);
+}
+
+:root {
+    --color1: #2b1055;
+    --color2: #fff;
+    --color3: #1c0522;
+    --color4: #1d3851;
+    --color6: #1c0522;
+    --color7: #002e63;
+    --color8: #013220;
+    --color9: #69359c;
+    --color10: #002e63;
+    --color11: #1d3851;
+    --color12: #000;
+    --color13: #bcd4e6;
+    --color14: rgba(241, 236, 236, 0.6);
+}
 
 
-
-@media (min-width: 576px) {
-    ::-webkit-scrollbar {
-        width: 7px;
-        background: transparent;
-    }
-  }
-
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 7px;
     background: transparent;
-} */
+}
 
 ::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 15px;
 }
 
-#app{
+#app {
     overflow-x: hidden;
+}
+
+body {
+    background: var(--color6);
+    scroll-behavior: smooth;
+}
+
+* {
+    transition:  color,background-color 1s;
 }
 
 .iconfont {

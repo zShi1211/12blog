@@ -98,7 +98,7 @@ async function onSubmitHandle() {
     scroll-snap-align: end;
     height: 100vh;
     width: 100%;
-    background: #fff;
+    background: var(--color11);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,7 +121,7 @@ async function onSubmitHandle() {
     /* will-change: animation; */
 }
 
-.emit-leave-active-to{
+.emit-leave-active-to {
     opacity: 0;
 }
 
@@ -200,7 +200,7 @@ async function onSubmitHandle() {
 .body,
 .seal {
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     width: 100%;
     display: flex;
     align-items: flex-end;
@@ -259,7 +259,7 @@ async function onSubmitHandle() {
     overflow: hidden;
     flex-shrink: 0;
     margin-right: 20px;
-
+    cursor: pointer;
 }
 
 .form .item.content .avatar img {

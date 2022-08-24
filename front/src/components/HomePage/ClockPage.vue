@@ -38,12 +38,6 @@ function dateBackHandle() {
 
 <template>
     <div class="ClockWrapper">
-        <div class="dateBack" @click="dateBackHandle">
-            <span>回</span>
-            <span>到</span>
-            <span>过</span>
-            <span>去</span>
-        </div>
         <div class="container" :class="{ back: dateBack }">
             <div class="box" @click="dateBackHandle">
                 <div class="clock">
@@ -66,18 +60,19 @@ function dateBackHandle() {
     display: flex;
     justify-content: center;
     align-items: center;
-     background: #9966cc;
+    background: var(--color7);
 }
+
 .ClockWrapper::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #efdecd, #efdecd 50%, #bcd4e6 50%, #bcd4e6);
-  clip-path:polygon(100% 0%, 100% 100%, 0% 100%, 0% 80%);
-  animation: animate 5s ease-in-out infinite;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--color9), var(--color9) 50%, var(--color8) 50%, var(--color8));
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 0% 80%);
+    animation: animate 5s ease-in-out infinite;
 }
 
 
@@ -93,33 +88,6 @@ function dateBackHandle() {
     }
 }
 
-.dateBack {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: transparent;
-    font-size: 150px;
-    display: flex;
-    justify-content: space-between;
-    opacity: 0.5;
-    transition: opacity,color  0.5s;
-    cursor: pointer;
-    padding: 0 20px;
-    box-sizing: border-box;
-    -webkit-text-stroke: 1px #fff;
-    z-index: 100;
-}
-@media (max-width: 768px) {
-  .dateBack {
-    font-size: 25vw;
-    padding: 0;
-  }
-}
-.dateBack:hover {
-    opacity: .5;
-    color: #fff;
-}
 
 .container {
     position: relative;
@@ -140,7 +108,7 @@ function dateBackHandle() {
 .box {
     position: relative;
     backdrop-filter: blur(50px);
-    -webkit-backdrop-filter:blur(50px);
+    -webkit-backdrop-filter: blur(50px);
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.5);
     animation: animate 5s ease-in-out infinite;
@@ -230,7 +198,7 @@ function dateBackHandle() {
     position: absolute;
     width: 2px;
     height: 65%;
-    background-color: rgb(39, 123, 233);
+    background-color: rgb(71, 87, 205);
     border-radius: 6px;
     z-index: 13;
 }

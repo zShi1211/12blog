@@ -67,7 +67,7 @@ export default function EditorArticle({ defaultArtcileAData = { time: new Date()
             </label>
             <label className='inputItem' >
                 <p className='titleItem' >内容:</p>
-                <MdEditor modelValue={articleData.mdString || ""} onChange={(value) => {
+                <MdEditor theme="dark" modelValue={articleData.mdString || ""} onChange={(value) => {
                     setArticleData({
                         ...articleData,
                         mdString: value

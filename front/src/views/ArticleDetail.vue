@@ -8,9 +8,12 @@ import CommentAreatext from '@/components/CommentAreatext.vue'
 import useCommentListData from '@/composition/commentList/useCommentListData';
 import CommentList from '@/components/CommentList.vue';
 import usePublishComment from '@/composition/commentList/usePublishComment';
-import useTouchBottomLoad from '@/composition/utils/useTouchBottomLoad';
+import useTouchBottomLoad from '@/composition/common/useTouchBottomLoad';
 import SpinTwoBalls from '@/components/Loading/SpinTwoBalls.vue';
 import Section from '@/components/Section.vue';
+import FullScreenLoading from '@/components/Loading/FullScreenLoading.vue';
+import useTheme from "@/composition/common/useTheme"
+const { theme } = useTheme();
 // 获取文章数据
 const route = useRoute();
 const { articleDate } = useArticleDetailData(route.params.id as string)
@@ -107,8 +110,8 @@ function onTouchBottomHandle() {
                 <p>字数 {{ articleDate?.words }}</p>
                 <p>喜欢 {{ articleDate?.like }} </p>
             </div>
-            <div class="content">
-                <div v-html="articleDate?.content" id="md-editor-rt-preview" class="md-preview default-theme">
+            <div class="content " :class="{ 'md-dark': theme === 'dark' }">
+                <div v-html="articleDate?.content" id="md-editor-rt-preview" class="md-preview default-theme md-dark">
                 </div>
             </div>
             <div class="commentText" ref="commentText">
@@ -126,6 +129,7 @@ function onTouchBottomHandle() {
         </Section>
 
     </div>
+    <FullScreenLoading v-else />
 </template>
 <style>
 @import "@/assets/css/style.css";
@@ -148,6 +152,7 @@ function onTouchBottomHandle() {
     font-size: 35px;
     padding: 0 0 22px;
     letter-spacing: .4px;
+    color: var(--color2);
     font-weight: 800;
 }
 
@@ -155,13 +160,14 @@ function onTouchBottomHandle() {
     font-size: 13px;
     display: flex;
     position: relative;
-    color: #666;
     padding-bottom: 20px;
+    color: var(--color2);
 }
 
 .content {
     overflow: hidden;
-     padding: 50px 0 50px;
+    padding: 50px 0 50px;
+    /* color: var(--color2); */
 }
 
 .infomation::after {
@@ -172,8 +178,8 @@ function onTouchBottomHandle() {
     position: absolute;
     bottom: 0;
     left: 50%;
-    background: #666;
     transform: translateX(-50%);
+    background: var(--color2);
     opacity: 0.1;
 }
 

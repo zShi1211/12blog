@@ -52,7 +52,7 @@ import "css-doodle";
 
 <style  scoped>
 .sayhiWrapper {
-    background: #e74;
+    background:var(--color10) ;
     height: 100vh;
 
     padding: 0 10% 0;

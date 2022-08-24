@@ -1,10 +1,11 @@
 <script setup lang='ts'>
 import useLetterListData from '@/composition/letter/useLetterListData';
-import useTouchBottomLoad from '@/composition/utils/useTouchBottomLoad';
+import useTouchBottomLoad from '@/composition/common/useTouchBottomLoad';
 import { computed } from 'vue';
 import SpinTwoBalls from '@/components/Loading/SpinTwoBalls.vue';
 import Operation from '@/components/Operation.vue';
 import Section from '@/components/Section.vue';
+import FullScreenLoading from '@/components/Loading/FullScreenLoading.vue';
 const { searchConditon, totalLetter, loading } = useLetterListData();
 const isLetterLoadDone = computed(() => {
     return totalLetter.count <= totalLetter.rows.length
@@ -24,7 +25,7 @@ function touchBottomHandle() {
         <Section>
             <div class="letterItem" v-for="letter in totalLetter.rows" :key="letter.id">
                 <div class="avatar">
-                    <img :src="letter.avatar" alt="">
+                    <img :src="letter.avatar">
                 </div>
                 <div class="content">
                     <div class="box">
@@ -45,6 +46,7 @@ function touchBottomHandle() {
         </Section>
         <Operation />
     </div>
+    <FullScreenLoading v-else />
 </template>
 
 <style  scoped>

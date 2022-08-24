@@ -3,7 +3,7 @@ import StartExplore from '@/components/HomePage/StartExplore.vue'
 import ArticlePage from '@/components/HomePage/ArticlePage.vue';
 import ClockPage from '@/components/HomePage/ClockPage.vue';
 import LetterPage from '@/components/HomePage/LetterPage.vue';
-import SayHi from './SayHi.vue';
+import SayHiPage from '@/components/HomePage/SayHiPage.vue';
 </script>
 
 <template>
@@ -21,11 +21,10 @@ import SayHi from './SayHi.vue';
         </div>
         <div class="section" style="--i:3">
             <div class="wrapper">
-                <SayHi />
+                <SayHiPage />
             </div>
         </div>
         <LetterPage />
-
     </div>
 </template>
 

@@ -8,25 +8,26 @@ import LeapBallsVue from '../Loading/LeapBalls.vue';
         <div class="articleBox">
             <h1 class="title">Blog.</h1>
             <div class="content">
-            <div class="animation">
-                <LeapBallsVue />
-            </div>
-            <div class="description">
-                <p>一点点胡言乱语...</p>
-            </div>
-            <router-link to="/articles" >
-                <div class="detail">
-                    查看详细
+                <div class="animation">
+                    <LeapBallsVue />
                 </div>
-            </router-link>
-        </div></div>
+                <div class="description">
+                    <p>一点点胡言乱语...</p>
+                </div>
+                <router-link to="/articles">
+                    <div class="detail">
+                        查看详细
+                    </div>
+                </router-link>
+            </div>
+        </div>
     </div>
 </template>
 
 <style  scoped>
 .articlePageWrapper {
     height: 100%;
-    background: #361f3b;
+    background: var(--color3);
 
 }
 
@@ -60,17 +61,17 @@ import LeapBallsVue from '../Loading/LeapBalls.vue';
     text-align: center;
     position: relative;
     overflow: hidden;
-    background: #3d4d5e;
+    background: var(--color4);
     align-items: center;
 }
 
 .detail {
     width: 110px;
     height: 60px;
-    background: #000;
+    background: #fff;
     text-align: center;
     line-height: 60px;
-    color: #fff;
+    color: #000;
 }
 
 

@@ -1,13 +1,13 @@
 <script setup lang='ts'>
-import { useThemeStore } from "@/stores/themte"
-const themeStore = useThemeStore();
+import useTheme from "@/composition/common/useTheme"
+const { theme,switchTheme } = useTheme();
 
 </script>
 
 <template>
-    <div class="switchTheme" @click="themeStore.switchTheme">
-            <i class="iconfont icon-moon-fill" v-if="themeStore.theme === 'light'"></i>
-            <i class="iconfont icon-weibiaoti-" v-else></i>
+    <div class="switchTheme" @click="switchTheme">
+        <i class="iconfont icon-moon-fill" v-if="theme === 'dark'"></i>
+        <i class="iconfont icon-weibiaoti-" v-else></i>
     </div>
 </template>
 

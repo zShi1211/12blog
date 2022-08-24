@@ -78,6 +78,7 @@ function goTop() {
                     </div>
                 </div>
             </Section>
+            <div class="progress" :style="{ width: `${(audioState.currentTime / audioState.duration) * 100}%` }"></div>
         </div>
     </Transition>
 </template>
@@ -94,6 +95,7 @@ function goTop() {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     box-shadow: 0px -3px 10px #ccc;
+    color: var(--color2);
 }
 
 .logo {
@@ -151,15 +153,17 @@ function goTop() {
     position: absolute;
     height: 100%;
     /* width: 50%; */
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--color2);
     top: 0;
     z-index: 1;
+    opacity: 0.2;
 }
 
 .bottomBar {
     position: fixed;
     bottom: 0;
-    background: #fff;
+    background: var(--color12);
+    color: var(--color2);
     width: 100%;
     left: 0;
     height: 50px;
@@ -177,9 +181,7 @@ function goTop() {
 }
 
 
-.bottomBar .operate {
-    color: #888;
-}
+.bottomBar .operate {}
 
 @media (max-width: 576px) {
     .bottomBarBox .title {
@@ -196,8 +198,11 @@ function goTop() {
 .bottomBar .title {
     text-align: left;
     font-size: 16px;
-    color: #456;
+    color: var(--color13);
     font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .bottomBar .operate>div {

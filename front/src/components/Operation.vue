@@ -40,6 +40,7 @@ function goTop() {
     bottom: 30px;
     font-size: 25px;
     color: #318ce7;
+    z-index: 999;
 }
 
 .operationWrapper>p {

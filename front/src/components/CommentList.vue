@@ -134,11 +134,17 @@ const { totalComment } = defineProps<IProps>()
 }
 
 .info .reply {
-    color: #ef6d57;
+    color: #ffbf00;
     margin-right: 5px;
     opacity: 0;
     transition: opacity 0.3s;
     cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .info .reply {
+        opacity: 1;
+    }
 }
 
 .parentCommentItem:hover .reply {
@@ -151,7 +157,7 @@ const { totalComment } = defineProps<IProps>()
 
 .commentItem {
     padding-top: 10px;
-    border-bottom: 1px solid rgb(241, 236, 236);
+    border-bottom: 1px solid var(--color14);
 }
 
 .parentCommentItem {
@@ -171,7 +177,7 @@ const { totalComment } = defineProps<IProps>()
     width: calc(100% - 50px);
     content: "";
     display: block;
-    border-top: 1px solid rgb(241, 236, 236);
+    border-top: 1px solid var(--color14);
     position: absolute;
     top: 0;
     left: 50px;
@@ -188,7 +194,7 @@ const { totalComment } = defineProps<IProps>()
 }
 
 .replyInfo {
-    background-color: rgb(71, 210, 210);
+    background-color: var(--color10);
     color: #fff;
     padding: 0px 4px;
     border-radius: 10px;
@@ -197,7 +203,6 @@ const { totalComment } = defineProps<IProps>()
 
 .comment-enter-to {
     opacity: 1;
-
 }
 
 .comment-enter-active {

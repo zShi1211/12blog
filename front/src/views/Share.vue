@@ -5,6 +5,7 @@ import { computed } from '@vue/reactivity';
 import { watch } from 'vue'
 import { ref } from 'vue';
 import Operation from '@/components/Operation.vue';
+import FullScreenLoading from '@/components/Loading/FullScreenLoading.vue';
 const { totalShare, searchConditon, loading } = useShareListData()
 
 const currentPage = ref(0);
@@ -75,6 +76,7 @@ function changePageHandle(newPage: number) {
         </div>
         <Operation :exclude="['goTop']" />
     </div>
+    <FullScreenLoading v-else />
 </template>
 
 <style  scoped>
