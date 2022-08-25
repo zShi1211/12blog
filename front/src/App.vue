@@ -24,11 +24,12 @@
     opacity: 0;
     transform: translateX(-20px);
 }
+
 .slide-left-enter-active,
 .slide-left-leave-active,
 .slide-right-enter-active,
 .slide-right-leave-active {
-    transition: all  .5s;
+    transition: all .5s;
     will-change: transition;
 }
 

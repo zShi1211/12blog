@@ -8,7 +8,7 @@ const deg = 6;
 const hour = ref();
 const minuteute = ref();
 const secondond = ref();
-let timer: number;
+let timer: any;
 onMounted(() => {
     timer = setInterval(() => {
         let day = new Date()

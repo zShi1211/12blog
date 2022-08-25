@@ -1,16 +1,37 @@
 <script setup lang='ts'>
 import { onMounted, ref } from '@vue/runtime-dom';
 import ThemeSwitchVue from '../ThemeSwitch.vue';
-import i from '@/assets/img/stars.png'
+import FullScreenLoading from '@/components/Loading/FullScreenLoading.vue';
 import useTheme from "@/composition/common/useTheme"
-const scrollY = ref(0)
-const img = new Image
-img.src = i;
-img.onload = function () {
-    // console.log('done')
-}
+import imgsLoadDone from '@/utils/imgsLoadDone';
+import coverDarkStar from "@/assets/img/stars.png";
+import coverDarkMoon from "@/assets/img/moon.png";
+import coverDarkMountaintBehind from "@/assets/img/mountains_behind.png";
+import coverDarkMountaintFront from "@/assets/img/mountains_front.png";
+import coverLightSun from "@/assets/img/sun.png";
+import coverLightMountaintBehind from "@/assets/img/1.png";
+import coverLightMountaintFront from "@/assets/img/2.png";
+
 
 const { theme, switchTheme } = useTheme();
+const lightImgsLoadDone = ref(false)
+const darkImgsLoadDone = ref(false)
+const loading = ref(true)
+
+imgsLoadDone([coverDarkStar, coverDarkMoon, coverDarkMountaintBehind, coverDarkMountaintFront]).then(() => {
+    darkImgsLoadDone.value = true;
+    if (theme.value === "dark") {
+        loading.value = false;
+    }
+})
+imgsLoadDone([coverLightSun, coverLightMountaintBehind, coverLightMountaintFront]).then(() => {
+    lightImgsLoadDone.value = true;
+    if (theme.value === "light") {
+        loading.value = false;
+    }
+})
+
+const scrollY = ref(0)
 // 当屏幕宽度小于576时，就不让月亮动了，因为在手机端动画会抖动
 const clienWidth = ref(0);
 onMounted(() => {
@@ -22,21 +43,21 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="cover">
+    <FullScreenLoading v-if="loading" />
+    <div class="coverWrapper " v-else>
         <div class="bg">
             <div v-if="theme === 'dark'" class="imgs">
-                <img src="@/assets/img/stars.png" alt="" :style="{ transform: `translateX(${scrollY * 0.2}px)` }" />
-                <img src="@/assets/img/moon.png" alt="" class="moon"
+                <img :src="coverDarkStar" alt="" :style="{ transform: `translateX(${scrollY * 0.2}px)` }" />
+                <img :src="coverDarkMoon" alt="" class="moon"
                     :style="{ transform: clienWidth > 576 ? `translateY(${scrollY * 0.8}px)` : '0px' }">
-                <img src="@/assets/img/mountains_behind.png" alt=""
-                    :style="{ transform: `translateY(${scrollY * 0.4}px)` }">
-                <img src="@/assets/img/mountains_front.png" alt="">
+                <img :src="coverDarkMountaintBehind" alt="" :style="{ transform: `translateY(${scrollY * 0.4}px)` }">
+                <img :src="coverDarkMountaintFront" alt="">
             </div>
             <div v-else class="imgs">
-                <img src="@/assets/img/sun.png" alt="" class="sun"
+                <img :src="coverLightSun" alt="" class="sun"
                     :style="{ transform: clienWidth > 576 ? `translateY(${scrollY * 0.8}px)` : '0px' }">
-                <img src="@/assets/img/1.png" alt="" :style="{ transform: `translateY(${scrollY * 0.4}px)` }">
-                <img src="@/assets/img/2.png" alt="">
+                <img :src="coverLightMountaintBehind" alt="" :style="{ transform: `translateY(${scrollY * 0.4}px)` }">
+                <img :src="coverLightMountaintFront" alt="">
             </div>
 
         </div>
@@ -45,16 +66,15 @@ onMounted(() => {
             <h1 class="logo" @click="switchTheme">
                 logo
             </h1>
-            <ThemeSwitchVue />
+            <ThemeSwitchVue v-if="theme === 'dark' ? lightImgsLoadDone : darkImgsLoadDone" />
         </nav>
     </div>
-
 </template >
 
 
             
  <style scoped>
- .cover {
+ .coverWrapper {
      position: relative;
      height: 100%;
      scroll-snap-align: end;
@@ -107,12 +127,12 @@ onMounted(() => {
  }
  
  /*  .bg.dark {
-          background: rgb(232, 199, 16);
-      }
-      
-      .bg.light {
-          background: #2b1055;
-      } */
+                               background: rgb(232, 199, 16);
+                           }
+                           
+                           .bg.light {
+                               background: #2b1055;
+                           } */
  
  
  .bg img {

@@ -12,6 +12,10 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+  base: "/client/",
+  build: {
+    outDir: "../dist/public/client",
+  },
   server: {
     proxy: {
       '/api': {
@@ -23,6 +27,6 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-    host:"192.168.31.150"
+    // host:"192.168.31.150"
   }
 })

@@ -11,6 +11,9 @@ import Upload from './Upload'
 import koaStaticCache from 'koa-static-cache'
 import path from 'path';
 import koaStatic from "koa-static";
+import koaConnect from 'koa-connect';
+import historyFallback from 'connect-history-api-fallback'
+import fallback from './utils/fallback';
 
 
 const app = new Koa();
@@ -29,9 +32,32 @@ app.use(async (ctx, next) => {
         }
     }
 })
-console.log()
+const middleware = historyFallback({
+    rewrites: [
+        {
+            from: /^\/admin.*$/,
+            to: function (context) {
+                return fallback(context, '/admin/')
+            }
+        },
+        {
+            from: /^\/.*$/,
+            to: function (context) {
+                return fallback(context, '/client/')
+            }
+        }
+    ]
+} )
+app.use(koaConnect(middleware as any))
+
+app.use(async (ctx, next) => {
+    console.log(ctx.request)
+    await next();
+})
+
 // 静态资源托管
-app.use(koaStatic(path.resolve(__dirname, "../public")));
+const staticPath = process.env.NODE_ENV === 'production' ? path.resolve(__dirname, "./public") : path.resolve(__dirname, "../public")
+app.use(koaStatic(staticPath));
 
 // body解析
 app.use(bodyParser())
@@ -50,3 +76,4 @@ app.use(Upload.routes());
 app.listen(1111, () => {
     console.log('监听端口1111')
 });
+

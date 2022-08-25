@@ -48,14 +48,14 @@ function changePageHandle(newPage: number) {
                 </div>
                 <div class="pageItem bookItem" v-for="(share, index) in totalShare.rows" :key="share.id"
                     :class="{ pass: currentPage > index + 1 }"
-                    :style="{ 'z-index': totalShare.count - index + (currentPage > index + 1 ? index * 2 + 2 : 1) }">
+                    :style="{ 'z-index': totalShare.count - index + (currentPage > index + 1 ? index * 2 + 2 : 1), 'will-change':currentPage == index || currentPage == index +2 ? 'transform' : 'none'   }">
                     <div class="content">
                         <div class="top">
                             <p class="pageIndex">{{ index + 1 }}</p>
                             <p class="time">{{ $dateFormat(new Date(share.time)) }}</p>
                         </div>
-                        <div class="picture">
-                            <img :src="share.pictureUrl" alt="">
+                        <div class="picture" >
+                            <img :src="share.pictureUrl" alt="" >
                         </div>
                         <div class="description">
                             {{ share.description }}
@@ -68,8 +68,7 @@ function changePageHandle(newPage: number) {
                     :class="{ pass: currentPage > totalShare.count + 1 }"></div>
             </div>
             <div class="operate">
-                <button :disabled="currentPage === 0"
-                    @click="changePageHandle(currentPage - 1)">Prev</button>
+                <button :disabled="currentPage === 0" @click="changePageHandle(currentPage - 1)">Prev</button>
                 <button :disabled="currentPage === totalShare.count + 2"
                     @click="changePageHandle(currentPage + 1)">Next</button>
             </div>

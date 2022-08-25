@@ -9,7 +9,7 @@ export default class AdminEntity extends BaseEntity implements AdminType {
 
     @IsNotEmpty()
     @Type(() => String)
-    @Length(1, 6)
+    @Length(1, 16)
     nickname: string;
 
 

@@ -9,7 +9,7 @@ const router = new Router({
 });
 
 // 文件上传地址
-const uploadPath = path.resolve(__dirname, '../public/upload')
+const uploadPath = process.env.NODE_ENV === 'production' ? path.resolve(__dirname, "./public/upload") : path.resolve(__dirname, "../public/upload");
 const storage = koaMulter.diskStorage({
     async destination(req, file, cb) {
         try {
@@ -42,7 +42,7 @@ router.post(
     '/',
     upload.single('file'),
     ctx => {
-        let filename = path.join("/upload",ctx.request.file.filename);
+        let filename = path.join("/upload", ctx.request.file.filename);
         filename = filename.replace(/\\\\?/g, "\/");
         ResponseHelper.sendData(filename, ctx);
     }

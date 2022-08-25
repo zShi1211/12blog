@@ -7,8 +7,8 @@ import SayHiPage from '@/components/HomePage/SayHiPage.vue';
 </script>
 
 <template>
-    <div class="container" ref="container">
-        <StartExplore />
+    <div class="container" >
+        <StartExplore  />
         <div class="section" style="--i:1">
             <div class="wrapper">
                 <ArticlePage />
