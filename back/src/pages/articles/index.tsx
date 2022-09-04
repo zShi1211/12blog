@@ -50,7 +50,7 @@ interface ITotalArticle {
 const Aritcle: React.FC<IProps> = () => {
     const [articleData, setArticleData] = useState<ITotalArticle>({ count: 0, articles: [] });
     const [query, setQuery] = useState<ISeartchCondition>({
-        page: 1,
+        offest: 1,
         limit: 5,
     });
     const [searchKey, setSearchKey] = useState<string>("");
@@ -221,11 +221,11 @@ const Aritcle: React.FC<IProps> = () => {
 
                         <Table columns={columns} dataSource={data} pagination={{
                             total: articleData.count,
-                            current: query.page,
+                            current: query.offest,
                             pageSize: query.limit,
-                            onChange(page) {
+                            onChange(offest) {
                                 setQuery({
-                                    page
+                                    offest
                                 })
                             }
                         }} />

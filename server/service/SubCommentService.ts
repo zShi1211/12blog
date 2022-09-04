@@ -1,6 +1,4 @@
-import CommentEntity from "../entities/CommentEntity";
 import SubCommentEntity from "../entities/SubCommentEntity";
-import Comment from "../model/Comment";
 import SubComment from "../model/SubComment";
 import parserValidate from "./utils/parserValidateErr";
 

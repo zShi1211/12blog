@@ -1,6 +1,6 @@
 import styles from './index.css'
 import React, { useState } from 'react'
-import { connect,  history } from 'umi';
+import { connect, history } from 'umi';
 import { IFetchLogin, ILoginInfo, IRegisterInfo } from './types';
 import { message } from 'antd';
 import { register } from '@/api/admin';
@@ -91,13 +91,13 @@ const Login: React.FC<{ fetchLogin: IFetchLogin, }> = ({ fetchLogin, }) => {
                                 const defaultNickName = 'defaultNickName';
                                 const defaultAvatar = avatar
                                 message.loading("注册中~", 0);
-                                const res = await register({
+                                const res: any = await register({
                                     ...registerInfo,
                                     nickname: defaultNickName,
                                     avatar: defaultAvatar
                                 })
                                 message.destroy();
-                                if (res) {
+                                if (!res.err) {
                                     message.success("注册成功！")
                                     // 注册成功后跳转登录选项
                                     setActive("");
