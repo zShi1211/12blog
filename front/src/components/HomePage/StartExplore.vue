@@ -64,7 +64,7 @@ onMounted(() => {
 
         <nav>
             <h1 class="logo" @click="switchTheme">
-                logo
+                zshishi2
             </h1>
             <ThemeSwitchVue v-if="theme === 'dark' ? lightImgsLoadDone : darkImgsLoadDone" />
         </nav>

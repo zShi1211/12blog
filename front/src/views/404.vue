@@ -10,7 +10,7 @@ import Section from '@/components/Section.vue';
                 <div class="centent">
                     <p>你好像迷路了</p>
                     <p>
-                        <router-link to="/" replace>回家</router-link>吧
+                        <router-link to="/" replace>回家吧</router-link>
                     </p>
                 </div>
             </div>

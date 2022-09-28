@@ -7,18 +7,18 @@ const prestoreTheme = localStorage.getItem(key)
 if (prestoreTheme) {
     theme.value = prestoreTheme as IThemeState;
 }
+
+watchEffect(() => {
+    localStorage.setItem(key, theme.value!);
+    document.documentElement.className = theme.value!;
+})
 export default function useTheme() {
-    watchEffect(() => {
-        localStorage.setItem(key, theme.value!);
-        document.documentElement.className = theme.value!;
-    })
     function switchTheme() {
         theme.value = theme.value === 'dark' ? "light" : "dark";
     }
     return {
         theme,
         switchTheme,
-
     }
 }
 

@@ -1,11 +1,10 @@
 import { defineConfig } from 'umi';
-
 export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  // publicPath: "/admin/",
-  base:"/admin",
+  publicPath: process.env.NODE_ENV === 'production' ? '/admin/' : '/',
+  base: process.env.NODE_ENV === 'production' ? "/admin" : '/',
   mfsu: {},
   fastRefresh: {},
   dva: {
@@ -21,6 +20,6 @@ export default defineConfig({
       'target': 'http://localhost:1111',
       'changeOrigin': true,
     },
-
-  }
+  },
+  title: 'zshishi2',
 });

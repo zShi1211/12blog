@@ -37,27 +37,29 @@ const middleware = historyFallback({
         {
             from: /^\/admin.*$/,
             to: function (context) {
-                return fallback(context, '/admin/')
+                return fallback(context, '/admin/index.html')
             }
         },
         {
             from: /^\/.*$/,
             to: function (context) {
-                return fallback(context, '/client/')
+                return fallback(context, '/client/index.html')
             }
         }
     ]
-} )
+})
 app.use(koaConnect(middleware as any))
 
-app.use(async (ctx, next) => {
-    console.log(ctx.request)
-    await next();
-})
+
+
 
 // 静态资源托管
 const staticPath = process.env.NODE_ENV === 'production' ? path.resolve(__dirname, "./public") : path.resolve(__dirname, "../public")
-app.use(koaStatic(staticPath));
+app.use(koaStaticCache(staticPath, {
+    maxAge: 60 * 60 * 24 * 365,
+    preload: true,
+    dynamic: true
+}));
 
 // body解析
 app.use(bodyParser())

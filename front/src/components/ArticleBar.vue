@@ -33,7 +33,7 @@ function goTop() {
             position: topNear ? 'absolute' : 'fixed'
         }">
             <div class="nav">
-                <RouterLink to="/" class="logo">Logo</RouterLink>
+                <RouterLink to="/" class="logo">zshishi2</RouterLink>
                 <p class="title" :class="{ 'topNear': topNear }">{{ articleName }}</p>
                 <div class="operate">
 

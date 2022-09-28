@@ -2,6 +2,7 @@ import { Model, DataTypes, InferAttributes, InferCreationAttributes, CreationOpt
 import sequelize from './db'
 import { AdminType } from './types';
 
+
 export default class Admin extends Model<InferAttributes<Admin>, InferCreationAttributes<Admin>> implements AdminType {
     id: CreationOptional<number>;
     nickname: string;
