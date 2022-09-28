@@ -13,4 +13,5 @@ export interface ILoginInfo {
 
 export interface IRegisterInfo extends ILoginInfo {
     confirmpwd: string;
+    authorization: string;
 }

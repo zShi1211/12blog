@@ -3,6 +3,7 @@ import Admin from "../model/Admin";
 import md5 from 'md5';
 import { IAddAdmin, IAdminInfo, IUpdatePwd } from "./types";
 import parserValidate from "./utils/parserValidateErr";
+import { authorization } from '../secret'
 
 export default class AdminService {
     static async add(admin: IAddAdmin) {
@@ -14,6 +15,8 @@ export default class AdminService {
         if (r) throw Error("用户已存在")
         if (admin.loginpwd !== admin.confirmpwd)
             throw Error("两次密码不一致");
+        if (admin.authorization !== authorization) throw Error("暗号错误");
+
         const a = AdminEntity.transform(admin);
         const res = await a.validate();
         if (res) throw parserValidate(res);

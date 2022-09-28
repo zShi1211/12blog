@@ -16,7 +16,7 @@ const Login: React.FC<{ fetchLogin: IFetchLogin, }> = ({ fetchLogin, }) => {
     const [loginInfo, setLoginInfo] = useState<ILoginInfo>({ loginid: "", loginpwd: "" })
 
     // 注册信息
-    const [registerInfo, setRigister] = useState<IRegisterInfo>({ loginid: "", loginpwd: "", confirmpwd: "" })
+    const [registerInfo, setRigister] = useState<IRegisterInfo>({ loginid: "", loginpwd: "", confirmpwd: "", authorization: "" })
 
     return (
         <div className={styles.wrapper}>
@@ -87,6 +87,14 @@ const Login: React.FC<{ fetchLogin: IFetchLogin, }> = ({ fetchLogin, }) => {
                             }} />
                         </p>
                         <p>
+                            <input type="password" name="" id="" placeholder='Authorization' value={registerInfo.authorization} onChange={e => {
+                                setRigister({
+                                    ...registerInfo,
+                                    authorization: e.target.value
+                                })
+                            }} />
+                        </p>
+                        <p>
                             <button onClick={async () => {
                                 const defaultNickName = 'defaultNickName';
                                 const defaultAvatar = avatar
@@ -106,7 +114,7 @@ const Login: React.FC<{ fetchLogin: IFetchLogin, }> = ({ fetchLogin, }) => {
                                         loginpwd: registerInfo.loginpwd
                                     })
                                 } else {
-                                    message.error("注册失败！")
+                                    message.error(res.err)
                                 }
                             }}>注册</button>
                         </p>
