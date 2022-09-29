@@ -4,7 +4,7 @@ import { mysql } from '../secret'
 const sequelize = new Sequelize('blog', 'root', mysql, {
   host: 'localhost',
   dialect: 'mysql',
-  dialectModule: mysql2
+  dialectModule: mysql2,
 });
 
 export default sequelize;

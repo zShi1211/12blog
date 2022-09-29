@@ -10,7 +10,6 @@ export default class Letter extends Model<InferAttributes<Letter>, InferCreation
     avatar: string;
     isPrivate: boolean;
 }
-
 Letter.init({
     id: {
         type: DataTypes.INTEGER.UNSIGNED,
@@ -33,7 +32,7 @@ Letter.init({
             return new Date(rawValue).valueOf();
           },
     },
-    avatar: {
+    avatar: {       
         type: DataTypes.STRING,
         allowNull: false
     },

@@ -10,5 +10,6 @@ import "./relation"
 
 // 同步数据库
 (async () => {
-   const res =  await sequelize.sync();
+   const res: any = await sequelize.sync();
+   console.log(res.models)
 })();
