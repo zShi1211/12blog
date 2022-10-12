@@ -8,7 +8,7 @@
     "dev:server": "cd server && npx nodemon -x ts-node index.ts",
     "dev:back": "cd back && npm start",
     "dev:front": "cd front && npm run dev",
-    "build":"npm-run-all -p build:*",
+    "build": "npm-run-all -p build:*",
     "build:server": "cd server && npm run build",
     "build:back": "cd back && npm run build",
     "build:front": "cd front && npm run build"
@@ -23,7 +23,5 @@
   "bugs": {
     "url": "https://github.com/zShi1211/12blog/issues"
   },
-  "homepage": "https://github.com/zShi1211/12blog#readme",
-  "dependencies": {
-  }
+  "homepage": "https://github.com/zShi1211/12blog#readme"
 }

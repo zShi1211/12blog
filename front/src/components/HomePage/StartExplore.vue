@@ -64,7 +64,7 @@ onMounted(() => {
 
         <nav>
             <h1 class="logo" @click="switchTheme">
-                zshishi2
+                12
             </h1>
             <ThemeSwitchVue v-if="theme === 'dark' ? lightImgsLoadDone : darkImgsLoadDone" />
         </nav>
@@ -79,7 +79,10 @@ onMounted(() => {
      height: 100%;
      scroll-snap-align: end;
  }
- 
+ h1.logo{
+    cursor: pointer;
+    color:#f50514;
+ }
  nav {
      position: absolute;
      color: #fff;
@@ -90,6 +93,7 @@ onMounted(() => {
      box-sizing: border-box;
      top: 0;
      font-size: 25px;
+     align-items: center;
  }
  
  @media (max-width: 992px) {

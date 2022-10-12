@@ -27,6 +27,6 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
-    // host:"192.168.31.150"
+    // host:"172.20.10.3"
   }
 })

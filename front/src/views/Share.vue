@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import SpinTwoBalls from '@/components/Loading/SpinTwoBalls.vue';
 import useShareListData from '@/composition/share/useShareListData';
+import { component as Viewer } from "v-viewer"
 import { computed } from '@vue/reactivity';
 import { watch } from 'vue'
 import { ref } from 'vue';
@@ -40,6 +41,9 @@ function changePageHandle(newPage: number) {
 
 <template>
     <div class="shareWrapper" v-if="totalShare.count > 0">
+        <Viewer>
+            <img src="" alt="">
+        </Viewer>
         <div class="shareBox">
             <div class="book "
                 :class="{ open: currentPage > 0 && currentPage < totalShare.count + 2, done: currentPage > totalShare.count + 1 }">
@@ -54,8 +58,10 @@ function changePageHandle(newPage: number) {
                             <p class="pageIndex">{{ index + 1 }}</p>
                             <p class="time">{{ $dateFormat(new Date(share.time)) }}</p>
                         </div>
-                        <div class="picture" >
-                            <img :src="share.pictureUrl" alt="" >
+                        <div class="picture">
+                            <Viewer :options="{navbar:false,toolbar:false,title:false,movable:false}" :style="{width:'100%',height:'100%'}">
+                                <img :src="share.pictureUrl" >
+                            </Viewer>
                         </div>
                         <div class="description">
                             {{ share.description }}
@@ -79,8 +85,8 @@ function changePageHandle(newPage: number) {
 </template>
 
 <style  scoped>
-@import 'viewerjs/dist/viewer.css';
 
+@import 'viewerjs/dist/viewer.css';
 
 .shareWrapper {
     overflow: hidden;

@@ -25,7 +25,7 @@ import "css-doodle";
                     12
                 </p>
                 <p class="links">
-                    <a href="">
+                    <a href="https://github.com/zShi1211/12blog"  target="_blank">
                         <i class="iconfont icon-github"></i>
                     </a>
                 </p>

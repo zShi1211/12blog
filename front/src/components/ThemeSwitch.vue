@@ -12,4 +12,7 @@ const { theme,switchTheme } = useTheme();
 </template>
 
 <style  scoped>
+.switchTheme{
+    cursor:pointer;
+}
 </style>
