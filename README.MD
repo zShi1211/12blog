@@ -10,15 +10,15 @@
 **❤️支持暗夜模式切换**
 
 1. ✌️首页
-![](./introductionImg/1.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/1.png)
 2. ✌️文章
-![](./introductionImg/2.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/2.png)
 3. ✌️留言
-![](./introductionImg/5.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/5.png)
 4. ✌️趣事分享
-![](./introductionImg/3.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/3.png)
 5. ✌️介绍页（但没介绍...）
-![](./introductionImg/4.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/4.png)
 
 👻👻👻
 **页面详情[在这里🖱️](http://www.zshishi2.top/)**
@@ -30,13 +30,13 @@
 **❤️后台页面因自己使用❤️UI就不太尽人意❤️主要是针对功能方面**
 
 1. ✌️登录注册
-![](./introductionImg/9.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/9.png)
 2. ✌️文章列表
-![](./introductionImg/6.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/6.png)
 3. ✌️添加文章
-![](./introductionImg/7.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/7.png)
 4. ✌️评论管理
-![](./introductionImg/8.png)
+![](https://gitee.com/zshi1211/12blog/raw/main/introductionImg/8.png)
 
 
 
@@ -96,8 +96,8 @@
             listen 80;
             server_name 你的域名;
             location / {
-                # IP是你的服务器本地IP，1211是nodejs监听的端口
-                proxy_pass http://IP:1211
+                # IP是你的服务器本地IP，1111是nodejs监听的端口
+                proxy_pass http://IP:1111
             }
         }
     }
