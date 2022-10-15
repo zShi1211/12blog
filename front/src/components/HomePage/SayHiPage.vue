@@ -10,7 +10,7 @@ import "css-doodle";
             <div class="left">
                 <p class="email item">
                     <a href="mailto:zshi1211@qq.com">
-                        2459924732@qq.com
+                        zshi1211@qq.com
                     </a>
                 </p>
                 <p class="decor item"></p>
@@ -27,6 +27,9 @@ import "css-doodle";
                 <p class="links">
                     <a href="https://github.com/zShi1211/12blog"  target="_blank">
                         <i class="iconfont icon-github"></i>
+                    </a>
+                    <a href="https://gitee.com/zshi1211/12blog"  target="_blank">
+                        <i class="iconfont icon-gitee-fill-round"></i>
                     </a>
                 </p>
             </div>
@@ -152,5 +155,6 @@ import "css-doodle";
 .links a {
     display: inline-block;
     font-size: 35px;
+    margin-right: 15px;
 }
 </style>

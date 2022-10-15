@@ -7,9 +7,17 @@ import { watch } from 'vue'
 import { ref } from 'vue';
 import Operation from '@/components/Operation.vue';
 import FullScreenLoading from '@/components/Loading/FullScreenLoading.vue';
+import imgsLoadDone from '@/utils/imgsLoadDone';
+import cover from '@/assets/img/cover.jpg';
 const { totalShare, searchConditon, loading } = useShareListData()
 
 const currentPage = ref(0);
+const coverLoading = ref(false);
+
+imgsLoadDone([cover]).then(() => {
+    console.log(0)
+    coverLoading.value = true;
+})
 
 const isShareLoadDone = computed(() => {
     return totalShare.count <= totalShare.rows.length
@@ -40,7 +48,7 @@ function changePageHandle(newPage: number) {
 </script>
 
 <template>
-    <div class="shareWrapper" v-if="totalShare.count > 0">
+    <div class="shareWrapper" v-if="totalShare.count > 0 && coverLoading">
         <Viewer>
             <img src="" alt="">
         </Viewer>
@@ -59,8 +67,9 @@ function changePageHandle(newPage: number) {
                             <p class="time">{{ $dateFormat(new Date(share.time)) }}</p>
                         </div>
                         <div class="picture">
-                            <Viewer :options="{navbar:false,toolbar:false,title:false,movable:false}" :style="{width:'100%',height:'100%'}">
-                                <img :src="share.pictureUrl" >
+                            <Viewer :options="{navbar:false,toolbar:false,title:false,movable:false}"
+                                :style="{width:'100%',height:'100%'}">
+                                <img :src="share.pictureUrl">
                             </Viewer>
                         </div>
                         <div class="description">
@@ -85,7 +94,6 @@ function changePageHandle(newPage: number) {
 </template>
 
 <style  scoped>
-
 @import 'viewerjs/dist/viewer.css';
 
 .shareWrapper {

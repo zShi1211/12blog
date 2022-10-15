@@ -54,7 +54,7 @@ function goTop() {
 
 
         <div class="bottomBar" v-else>
-            <Section>
+            <Section >
                 <div class="bottomBarBox">
                     <p class="title">{{ articleName }}</p>
                     <div class="operate">
@@ -110,8 +110,6 @@ function goTop() {
     display: flex;
     align-items: center;
     padding: 0 20px;
-    position: relative;
-    z-index: 2;
 }
 
 
@@ -158,7 +156,7 @@ function goTop() {
     /* width: 50%; */
     background: var(--color2);
     top: 0;
-    z-index: 1;
+    z-index: -1;
     opacity: 0.2;
 }
 
