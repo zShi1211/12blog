@@ -27,7 +27,7 @@ router.get('/:id', async ctx => {
 
 router.post('/', async ctx => {
     const { body } = ctx.request;
-    const res = await LetterService.add(body);
+    const res = await LetterService.add(body as any);
     ResponseHelper.sendData(res, ctx);
 });
 

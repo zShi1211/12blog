@@ -27,7 +27,7 @@ router.get('/all/:articleId', async ctx => {
 
 router.post('/', async ctx => {
     const { body } = ctx.request;
-    const res = await CommentService.add(body);
+    const res = await CommentService.add(body as any);
     ResponseHelper.sendData(res, ctx);
 });
 

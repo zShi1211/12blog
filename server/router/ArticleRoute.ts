@@ -26,8 +26,8 @@ router.get('/:id', async ctx => {
 
 router.put('/:id/like', async ctx => {
     const { id } = ctx.params;
-    const { body: { like } } = ctx.request;
-    const res = await ArticleService.update(id, { like })
+    const { like } = ctx.request.body as any;
+    const res = await ArticleService.update(id, { like})
     ResponseHelper.sendData(res, ctx);
 
 })
@@ -46,7 +46,7 @@ router.get('/', async ctx => {
 
 router.post('/', async ctx => {
     const { body } = ctx.request;
-    const res = await ArticleService.add(body);
+    const res = await ArticleService.add(body as any);
     ResponseHelper.sendData(res, ctx);
 });
 
@@ -60,7 +60,7 @@ router.delete('/:id', async ctx => {
 router.put('/:id', async ctx => {
     const { id } = ctx.params;
     const { body } = ctx.request
-    const res = await ArticleService.update(id, body)
+    const res = await ArticleService.update(id, body as any)  
     ResponseHelper.sendData(res, ctx);
 
 })

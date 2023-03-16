@@ -1,8 +1,10 @@
-import koaMulter from '@koa/multer'
+// import koaMulter from '@koa/multer'
 import Router from '@koa/router'
 import path from 'path'
 import fs from 'fs'
 import ResponseHelper from './ResponseHelper';
+import multer from 'multer';
+import koaConnect from 'koa-connect';
 
 const router = new Router({
     prefix: "/api/upload"
@@ -10,7 +12,7 @@ const router = new Router({
 
 // 文件上传地址
 const uploadPath = process.env.NODE_ENV === 'production' ? path.resolve(__dirname, "./public/upload") : path.resolve(__dirname, "../public/upload");
-const storage = koaMulter.diskStorage({
+const storage = multer.diskStorage({
     async destination(req, file, cb) {
         try {
             const res = await fs.promises.stat(uploadPath);
@@ -25,14 +27,15 @@ const storage = koaMulter.diskStorage({
     }
 })
 
-const upload = koaMulter({
+const upload = multer({
     storage,
     fileFilter(req, file, cb) {
         const whileList = ['.jpg', '.png', 'jpeg', '.gif', '.webp', '.mp3', '.jfif'];
         if (whileList.includes(path.extname(file.originalname))) {
             cb(null, true)
         } else {
-            cb(new Error(`不支持${path.extname(file.originalname)}扩展名`), false)
+            const err = new Error(`不支持${path.extname(file.originalname)}扩展名`);
+            cb(err)
         }
     }
 });
@@ -40,9 +43,10 @@ const upload = koaMulter({
 
 router.post(
     '/',
-    upload.single('file'),
+    koaConnect(upload.single('file')),
     ctx => {
-        let filename = path.join("/upload", ctx.request.file.filename);
+        console.log(ctx.req.file)
+        let filename = path.join("/upload", ctx.req.file.filename);
         filename = filename.replace(/\\\\?/g, "\/");
         ResponseHelper.sendData(filename, ctx);
     }

@@ -6,5 +6,5 @@ import SubComment from "./SubComment";
 Article.hasMany(Comment,{foreignKey:"articleId"});
 
 // 1：M 一个评论可以有多个子评论
-Comment.hasMany(SubComment, { foreignKey: 'replyId' });
+Comment.hasMany(SubComment, { foreignKey: 'replyId',as:"SubComments" });
 

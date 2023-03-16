@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3580920 */
-  src: url('../fonts/iconfont.woff2?t=1665374244422') format('woff2'),
-       url('../fonts/iconfont.woff?t=1665374244422') format('woff'),
-       url('../fonts/iconfont.ttf?t=1665374244422') format('truetype');
+  src: url('../fonts/iconfont.woff2?t=1665891399583') format('woff2'),
+       url('../fonts/iconfont.woff?t=1665891399583') format('woff'),
+       url('../fonts/iconfont.ttf?t=1665891399583') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gitee-fill-round:before {
+  content: "\e686";
 }
 
 .icon-loading:before {
@@ -29,24 +33,12 @@
   content: "\e63a";
 }
 
-.icon-huidingbu:before {
-  content: "\e619";
-}
-
 .icon-dingbu:before {
   content: "\e78a";
 }
 
 .icon-moon-fill:before {
   content: "\e6c0";
-}
-
-.icon-huidaodingbu:before {
-  content: "\e6a4";
-}
-
-.icon-icon3:before {
-  content: "\e67f";
 }
 
 .icon-pinglunxiao:before {
@@ -71,10 +63,6 @@
 
 .icon-tianqitaiyangqichuang:before {
   content: "\e712";
-}
-
-.icon-moonbyueliang:before {
-  content: "\e6a0";
 }
 
 .icon-weibiaoti-:before {

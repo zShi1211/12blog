@@ -98,7 +98,7 @@ async function onSubmitHandle() {
     scroll-snap-align: end;
     height: 100vh;
     width: 100%;
-    background: var(--color11);
+    background: #1c0522;
     display: flex;
     justify-content: center;
     align-items: center;

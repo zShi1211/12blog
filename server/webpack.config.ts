@@ -13,7 +13,9 @@ module.exports = {
         filename: "index.js"
     },
     resolve: {
-        extensions: [".js", ".json", ".ts"]
+        extensions: [".js", ".json", ".ts"],
+        alias: {
+        }
     },
     externals: [ 'pg-hstore'],
     target: "node",

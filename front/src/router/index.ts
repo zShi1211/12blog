@@ -26,6 +26,10 @@ const router = createRouter({
       component:() => import("@/views/Letters.vue"),
     },
     {
+      path: '/about',
+      component: () => import('@/views/SayHi.vue'),
+    },
+    {
       path: '/:pathMatch(.*)*',
       component: () => import('@/views/404.vue'),
     }

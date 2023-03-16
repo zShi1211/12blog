@@ -10,7 +10,7 @@ const router = new Router({
 
 router.post('/', async ctx => {
     const { body } = ctx.request;
-    const res = await SubCommentService.add(body);
+    const res = await SubCommentService.add(body as object);
      ResponseHelper.sendData(res, ctx);
 });
 

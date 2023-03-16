@@ -32,7 +32,7 @@ router.use(koaJwt({
 
 router.post('/', async ctx => {
     const { body } = ctx.request;
-    const res = await ShareService.add(body);
+    const res = await ShareService.add(body as any);
     ResponseHelper.sendData(res, ctx);
 });
 
@@ -46,7 +46,7 @@ router.delete('/:id', async ctx => {
 router.put('/:id', async ctx => {
     const { id } = ctx.params;
     const { body } = ctx.request
-    const res = await ShareService.update(id, body)
+    const res = await ShareService.update(id, body as any)
     ResponseHelper.sendData(res, ctx);
 
 })

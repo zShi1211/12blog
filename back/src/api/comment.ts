@@ -3,7 +3,7 @@ import axios from './axiosInstance';
 
 // 获取一评论
 export function getOneComment(id: string) {
-    return axios.post(`/comment/${id}`);
+    return axios.get(`/comment/${id}`);
 }
 
 // 分页获取多评论

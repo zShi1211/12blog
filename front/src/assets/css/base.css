@@ -1,7 +1,8 @@
-@import "//at.alicdn.com/t/c/font_3580920_ajp1au4rnlr.css";
-/* @import "./iconfont.css"; */
+/* @import "//at.alicdn.com/t/c/font_3580920_ajp1au4rnlr.css"; */
+@import "./iconfont.css";
 
 :root.light {
+    
     --color1: rgb(232, 199, 16);
     --color2: #000;
     --color3: #4c2a00;

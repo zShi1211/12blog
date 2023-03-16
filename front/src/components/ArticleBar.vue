@@ -4,7 +4,7 @@ import useAudio from "@/composition/topBar/useAudio"
 import useScrollDirection from "@/composition/topBar/useScrollDirection";
 import Section from "./Section.vue";
 import ThemeSwitchVue from "./ThemeSwitch.vue";
-const { audioState, play, puase } = useAudio();
+const { audioState, toggle } = useAudio();
 const { direction, topNear } = useScrollDirection();
 
 interface IProps {
@@ -43,8 +43,8 @@ function goTop() {
                         <i class="iconfont icon-aixin" @click="upThumbHandle"></i>
                     </div>
                     <div class="play">
-                        <i class="iconfont icon-24gf-play" v-if="!audioState.isPlay" @click="play"></i>
-                        <i class="iconfont icon-24gf-pause2" v-else @click="puase"></i>
+                        <i class="iconfont " :class="[audioState.isPlay ?'icon-24gf-pause2': 'icon-24gf-play' ]"
+                            @click="toggle"></i>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@ function goTop() {
 
 
         <div class="bottomBar" v-else>
-            <Section >
+            <Section>
                 <div class="bottomBarBox">
                     <p class="title">{{ articleName }}</p>
                     <div class="operate">
@@ -67,8 +67,8 @@ function goTop() {
                             <i class="iconfont icon-aixin" @click="upThumbHandle"></i>
                         </div>
                         <div class="play">
-                            <i class="iconfont icon-24gf-play" v-if="!audioState.isPlay" @click="play"></i>
-                            <i class="iconfont icon-24gf-pause2" v-else @click="puase"></i>
+                            <i class="iconfont " :class="[audioState.isPlay ?'icon-24gf-pause2': 'icon-24gf-play' ]"
+                                @click="toggle"></i>
                         </div>
                         <ThemeSwitchVue />
 
@@ -100,7 +100,7 @@ function goTop() {
 
 .logo {
     cursor: pointer;
-    color:#f50514;
+    color: #f50514;
     font-weight: bold;
     font-size: 25px;
 }
@@ -124,6 +124,7 @@ function goTop() {
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 15px;
+    user-select: none;
 }
 
 .topBar .nav .title.topNear {
@@ -134,12 +135,18 @@ function goTop() {
     position: relative;
 }
 
+.play {
+    cursor: pointer;
+}
 
 .operate {
     display: flex;
     /* color: #fff; */
 }
 
+.upThumb {
+    cursor: pointer;
+}
 
 .topBar .upThumb {
     margin: 0 15px;
@@ -204,6 +211,7 @@ function goTop() {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    user-select: none;
 }
 
 .bottomBar .operate>div {
@@ -223,5 +231,10 @@ function goTop() {
 .bar-enter-from.bottomBar,
 .bar-leave-to.bottomBar {
     transform: translateY(100%);
+}
+
+.comment,
+.goTop {
+    cursor: pointer;
 }
 </style>

@@ -28,7 +28,6 @@ app.use(async (ctx, next) => {
             ResponseHelper.sendError(error.message, ctx);
         } else {
             ResponseHelper.sendError(error, ctx);
-
         }
     }
 })

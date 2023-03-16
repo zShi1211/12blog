@@ -41,8 +41,8 @@ export default class CommentService {
             },
             include: {
                 model: SubComment,
+                as:"SubComments"
             },
-            order: [['time', "desc"], ["SubComments", 'time', "asc"]]
         })
         res.rows = res.rows.map((data: any) => data.toJSON());
         // 父评论+子评论

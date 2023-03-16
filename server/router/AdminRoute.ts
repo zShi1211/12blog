@@ -4,6 +4,7 @@ import ResponseHelper from './ResponseHelper';
 import JWT from 'jsonwebtoken'
 import koaJwt from 'koa-jwt'
 import { secret } from './secret';
+import { IAddAdmin, IAdminInfo, IUpdatePwd } from '../service/types';
 
 const router = new Router({
     prefix: '/api/admin'
@@ -11,7 +12,7 @@ const router = new Router({
 
 router.post('/login', async ctx => {
     const { body } = ctx.request;
-    const res = await AdminService.login(body);
+    const res = await AdminService.login(body as IAdminInfo);
     const token = JWT.sign({ id: res!.id }, secret);
     ctx.set('Authorization', token);
     ResponseHelper.sendData(res, ctx);
@@ -19,7 +20,7 @@ router.post('/login', async ctx => {
 
 router.post('/', async ctx => {
     const { body } = ctx.request;
-    const res = await AdminService.add(body);
+    const res = await AdminService.add(body as IAddAdmin);
     ResponseHelper.sendData(res, ctx);
 });
 
@@ -45,7 +46,7 @@ router.put('/', async ctx => {
 router.put('/pwd', async ctx => {
     const { userId } = ctx.state;
     const { body } = ctx.request
-    const res = await AdminService.updatePwd(userId.id, body)
+    const res = await AdminService.updatePwd(userId.id, body as IUpdatePwd)
     ResponseHelper.sendData(res, ctx);
 })
 

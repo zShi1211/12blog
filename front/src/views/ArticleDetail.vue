@@ -139,14 +139,7 @@ function onTouchBottomHandle() {
     padding: 100px 0;
 }
 
-.aaa {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background: #f58220;
-}
+
 
 .title {
     font-size: 35px;

@@ -29,7 +29,6 @@ function dateBackHandle() {
     dateBack.value = true;
     clearInterval(timer);
     setTimeout(() => {
-        dateBack.value = false;
         router.push('/share');
     }, 800)
 }
@@ -49,7 +48,9 @@ function dateBackHandle() {
                     </div>
                 </div>
             </div>
+
         </div>
+        <p class="link" @click="dateBackHandle">回到过去</p>
     </div>
 </template>
 
@@ -61,6 +62,8 @@ function dateBackHandle() {
     justify-content: center;
     align-items: center;
     background: var(--color7);
+    position: relative;
+    overflow: hidden;
 }
 
 .ClockWrapper::before {
@@ -231,5 +234,12 @@ function dateBackHandle() {
     100% {
         transform: rotateZ(-1500deg);
     }
+}
+.link{
+    position: absolute;
+    bottom:35px;
+    color:#ff105e;
+    text-decoration:underline;
+    cursor: pointer;
 }
 </style>
